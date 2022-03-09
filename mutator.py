@@ -7,6 +7,7 @@ config_files = [
     "karabiner.json",
     "~/.config/karabiner/karabiner.json",
 ]
+config_profile_name = "pc style"
 
 with open(complex_rules_file) as _f:
     desired_rules = yaml.load(_f.read(), Loader=yaml.Loader)
@@ -88,7 +89,7 @@ for config_file in config_files:
         config = json.loads(_f.read())
 
     for p in config["profiles"]:
-        if "pc style" in p["name"].lower():
+        if config_profile_name in p["name"].lower():
             p["complex_modifications"]["rules"] = _rules
 
     with open(config_file, "w") as _f:
