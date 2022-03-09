@@ -1,8 +1,12 @@
 import json
+import os
 import yaml
 
 complex_rules_file = "complex_rules.yml"
-config_file = "/Users/marshallporter/.config/karabiner/karabiner.json"
+config_files = [
+    "karabiner.json",
+    "~/.config/karabiner/karabiner.json",
+]
 
 with open(complex_rules_file) as _f:
     desired_rules = yaml.load(_f.read(), Loader=yaml.Loader)
@@ -78,13 +82,14 @@ for rule in desired_rules:
 
     _rules.append({"description": rule["description"], "manipulators": _manipulators})
 
+for config_file in config_files:
+    config_file = os.path.expanduser(config_file)
+    with open(config_file) as _f:
+        config = json.loads(_f.read())
 
-with open(config_file) as _f:
-    config = json.loads(_f.read())
+    for p in config["profiles"]:
+        if "pc style" in p["name"].lower():
+            p["complex_modifications"]["rules"] = _rules
 
-for p in config["profiles"]:
-    if "pc style" in p["name"].lower():
-        p["complex_modifications"]["rules"] = _rules
-
-with open(config_file, "w") as _f:
-    _f.write(json.dumps(config, indent=4))
+    with open(config_file, "w") as _f:
+        _f.write(json.dumps(config, indent=4))
