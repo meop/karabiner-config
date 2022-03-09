@@ -1,0 +1,347 @@
+---
+# changes from Karabiner:
+
+# 1. adding rule level conditions
+# and inlining them into manipulators
+
+# 2. not using macros
+# ie, multiple outputs from single input
+# so simplified mappings
+
+# 3. not allowing optional modifiers
+# as this just introduces greedy capture
+# and unexpected behaviors
+
+- description: PC style behaviors
+
+  # excluding apps that already use
+  # PC style controls
+  exclude:
+    - "^com\\.microsoft\\.rdc\\."
+    - "^com\\.realvnc\\.vncviewer$"
+    - "^com\\.valvesoftware\\."
+    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+
+  manipulators:
+    # open task manager
+    - from:
+        key_code: escape
+        modifiers:
+          - control
+          - shift
+      to:
+        shell_command: "open -a 'Activity Monitor.app'"
+
+    # open document explorer
+    - from:
+        key_code: e
+        modifiers:
+          - command
+      to:
+        shell_command: "open -a 'Finder.app'"
+
+    # cycle between applications
+    - from:
+        key_code: tab
+        modifiers:
+          - option
+      to:
+        modifiers:
+          - command
+
+    # switch to previous tab
+    - from:
+        key_code: tab
+        modifiers:
+          - control
+          - shift
+      to:
+        key_code: open_bracket
+        modifiers:
+          - command
+          - shift
+
+    # switch to next tab
+    - from:
+        key_code: tab
+        modifiers:
+          - control
+      to:
+        key_code: close_bracket
+        modifiers:
+          - command
+          - shift
+
+    # print screen display
+    - from:
+        key_code: print_screen
+      to:
+        key_code: "3"
+        modifiers:
+          - command
+          - control
+          - shift
+
+    # print screen display partial
+    - from:
+        key_code: print_screen
+        modifiers:
+          - option
+      to:
+        key_code: "4"
+        modifiers:
+          - command
+          - control
+          - shift
+
+    # virtual desktop navigation
+    - from:
+        modifiers:
+          - command
+      to:
+        modifiers:
+          - control
+      key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
+
+    # document level navigation
+    - from:
+        key_code: up_arrow
+        modifiers:
+          - control
+      to:
+        modifiers:
+          - command
+      key_codes: [up_arrow, down_arrow]
+
+    # word level navigation
+    - from:
+        key_code: left_arrow
+        modifiers:
+          - control
+      to:
+        modifiers:
+          - option
+      key_codes: [left_arrow, right_arrow]
+
+    # virtual desktop splitting
+    - from:
+        modifiers:
+          - command
+          - option
+      to:
+        modifiers:
+          - control
+          - option
+      key_codes:
+        [
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+          u,
+          j,
+          k,
+          i,
+          d,
+          f,
+          g,
+          e,
+          t,
+          return_or_enter,
+        ]
+
+    # virtual desktop splitting key reverse
+    - from:
+        modifiers:
+          - control
+          - option
+      to:
+        modifiers:
+          - command
+          - option
+      key_codes:
+        [
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+          u,
+          j,
+          k,
+          i,
+          d,
+          f,
+          g,
+          e,
+          t,
+          return_or_enter,
+        ]
+
+- description: PC style control shortcuts
+
+  # including cross platform apps
+  include:
+    - "^com\\.google\\.Chrome$"
+    - "^com\\.insomnia\\."
+    - "^com\\.microsoft\\.onenote\\."
+    - "^com\\.microsoft\\.VSCode$"
+    - "^com\\.facebook\\.fbvscode$"
+    - "^org\\.jkiss\\.dbeaver\\."
+    - "^org\\.wireshark\\.Wireshark$"
+
+  manipulators:
+    # common controls
+    - from:
+        modifiers:
+          - control
+      to:
+        modifiers:
+          - command
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+        ]
+
+    # common meta controls
+    - from:
+        modifiers:
+          - control
+          - shift
+      to:
+        modifiers:
+          - command
+          - shift
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+        ]
+
+    # common alt controls
+    - from:
+        modifiers:
+          - control
+          - option
+      to:
+        modifiers:
+          - command
+          - option
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+        ]
+
+    # common alt meta controls
+    - from:
+        modifiers:
+          - control
+          - option
+          - shift
+      to:
+        modifiers:
+          - command
+          - option
+          - shift
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+        ]
