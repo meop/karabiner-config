@@ -17,7 +17,7 @@ def _get_modifiers(input, outbound=False):
     if outbound:
         for i in range(0, len(modifiers)):
             modifiers[i] = _safe_prefix(modifiers[i], "left_")
-    return  modifiers
+    return modifiers
 
 
 def _build_manipulator(conditions, from_, to_):
