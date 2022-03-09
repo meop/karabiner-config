@@ -103,9 +103,17 @@
           - control
       key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
 
+    # page level navigation
+    - from:
+        modifiers:
+          - option
+      to:
+        modifiers:
+          - command
+      key_codes: [left_arrow, right_arrow]
+
     # document level navigation
     - from:
-        key_code: up_arrow
         modifiers:
           - control
       to:
@@ -115,7 +123,6 @@
 
     # word level navigation
     - from:
-        key_code: left_arrow
         modifiers:
           - control
       to:
@@ -225,6 +232,13 @@
           x,
           y,
           z,
+          hyphen,
+          equal_sign,
+          comma,
+          period,
+          slash,
+          backslash,
+          grave_accent_and_tilde,
         ]
 
     # common meta controls
@@ -264,6 +278,13 @@
           x,
           y,
           z,
+          hyphen,
+          equal_sign,
+          comma,
+          period,
+          slash,
+          backslash,
+          grave_accent_and_tilde,
         ]
 
     # common alt controls
@@ -303,6 +324,13 @@
           x,
           y,
           z,
+          hyphen,
+          equal_sign,
+          comma,
+          period,
+          slash,
+          backslash,
+          grave_accent_and_tilde,
         ]
 
     # common alt meta controls
@@ -344,4 +372,11 @@
           x,
           y,
           z,
+          hyphen,
+          equal_sign,
+          comma,
+          period,
+          slash,
+          backslash,
+          grave_accent_and_tilde,
         ]

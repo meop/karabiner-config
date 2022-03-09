@@ -361,6 +361,66 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.",
+                                            "^com\\.realvnc\\.vncviewer$",
+                                            "^com\\.valvesoftware\\.",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.",
+                                            "^com\\.realvnc\\.vncviewer$",
+                                            "^com\\.valvesoftware\\.",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "up_arrow",
                                     "modifiers": {
                                         "mandatory": [
@@ -2243,6 +2303,237 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
@@ -3153,6 +3444,251 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
@@ -4063,6 +4599,251 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
@@ -5000,6 +5781,265 @@
                                 "to": [
                                     {
                                         "key_code": "z",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.google\\.Chrome$",
+                                            "^com\\.insomnia\\.",
+                                            "^com\\.microsoft\\.onenote\\.",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.facebook\\.fbvscode$",
+                                            "^org\\.jkiss\\.dbeaver\\.",
+                                            "^org\\.wireshark\\.Wireshark$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
                                         "modifiers": [
                                             "left_command",
                                             "left_option",
