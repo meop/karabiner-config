@@ -12,7 +12,7 @@
 # as this just introduces greedy capture
 # and unexpected behaviors
 
-- description: PC style behaviors
+- description: PC style OS interaction
 
   # excluding apps that already use
   # PC style controls
@@ -39,6 +39,63 @@
           - command
       to:
         shell_command: "open -a 'Finder.app'"
+
+    # virtual desktop splitting
+    - from:
+        modifiers:
+          - command
+          - option
+      to:
+        modifiers:
+          - control
+          - option
+      key_codes:
+        [
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+          u,
+          j,
+          k,
+          i,
+          d,
+          f,
+          g,
+          e,
+          t,
+          return_or_enter,
+        ]
+      reverse: true
+
+    # virtual desktop navigation
+    - from:
+        modifiers:
+          - command
+      to:
+        modifiers:
+          - control
+      key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
+
+    # print screen display
+    - from:
+        key_code: print_screen
+      to:
+        key_code: "3"
+        modifiers:
+          - command
+          - shift
+
+    # print screen display partial
+    - from:
+        key_code: print_screen
+        modifiers:
+          - option
+      to:
+        key_code: "4"
+        modifiers:
+          - command
+          - shift
 
     # cycle between applications
     - from:
@@ -72,38 +129,21 @@
           - command
           - shift
 
-    # print screen display
-    - from:
-        key_code: print_screen
-      to:
-        key_code: "3"
-        modifiers:
-          - command
-          - control
-          - shift
 
-    # print screen display partial
-    - from:
-        key_code: print_screen
-        modifiers:
-          - option
-      to:
-        key_code: "4"
-        modifiers:
-          - command
-          - control
-          - shift
+- description: PC style page navigation
 
-    # virtual desktop navigation
-    - from:
-        modifiers:
-          - command
-      to:
-        modifiers:
-          - control
-      key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
+  # excluding apps that already use
+  # PC style controls
+  # or have their own unique controls
+  exclude:
+    - "^com\\.googlecode\\.iterm2$"
+    - "^com\\.microsoft\\.rdc\\."
+    - "^com\\.realvnc\\.vncviewer$"
+    - "^com\\.valvesoftware\\."
+    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
 
-    # page level navigation
+  manipulators:
+    # pages
     - from:
         modifiers:
           - option
@@ -112,7 +152,7 @@
           - command
       key_codes: [left_arrow, right_arrow]
 
-    # document level navigation
+    # lines on pages
     - from:
         modifiers:
           - control
@@ -121,7 +161,7 @@
           - command
       key_codes: [up_arrow, down_arrow]
 
-    # word level navigation
+    # words on lines
     - from:
         modifiers:
           - control
@@ -130,61 +170,8 @@
           - option
       key_codes: [left_arrow, right_arrow]
 
-    # virtual desktop splitting
-    - from:
-        modifiers:
-          - command
-          - option
-      to:
-        modifiers:
-          - control
-          - option
-      key_codes:
-        [
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-          u,
-          j,
-          k,
-          i,
-          d,
-          f,
-          g,
-          e,
-          t,
-          return_or_enter,
-        ]
 
-    # virtual desktop splitting key reverse
-    - from:
-        modifiers:
-          - control
-          - option
-      to:
-        modifiers:
-          - command
-          - option
-      key_codes:
-        [
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-          u,
-          j,
-          k,
-          i,
-          d,
-          f,
-          g,
-          e,
-          t,
-          return_or_enter,
-        ]
-
-- description: PC style control shortcuts
+- description: PC style control vs command
 
   # including cross platform apps
   include:
@@ -240,6 +227,7 @@
           backslash,
           grave_accent_and_tilde,
         ]
+      reverse: true
 
     # common meta controls
     - from:
@@ -286,6 +274,7 @@
           backslash,
           grave_accent_and_tilde,
         ]
+      reverse: true
 
     # common alt controls
     - from:
@@ -332,6 +321,7 @@
           backslash,
           grave_accent_and_tilde,
         ]
+      reverse: true
 
     # common alt meta controls
     - from:
@@ -380,3 +370,4 @@
           backslash,
           grave_accent_and_tilde,
         ]
+      reverse: true

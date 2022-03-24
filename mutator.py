@@ -3,10 +3,7 @@ import os
 import yaml
 
 complex_rules_file = "complex_rules.yml"
-config_files = [
-    "karabiner.json",
-    "~/.config/karabiner/karabiner.json",
-]
+config_file = "~/.config/karabiner/karabiner.json"
 config_profile_name = "pc style"
 
 with open(complex_rules_file) as _f:
@@ -14,11 +11,18 @@ with open(complex_rules_file) as _f:
 
 
 def _safe_prefix(input, prefix):
-    return prefix + input.lstrip(prefix)
+    return (
+        input
+        if input.startswith(prefix)
+        else prefix + input
+    )
 
 
 def _get_modifiers(input, outbound=False):
-    modifiers = input["modifiers"] if "modifiers" in input else []
+    modifiers = []
+    if "modifiers" in input and input["modifiers"]:
+        for modifier in input["modifiers"]:
+            modifiers.append(modifier)
     if outbound:
         for i in range(0, len(modifiers)):
             modifiers[i] = _safe_prefix(modifiers[i], "left_")
@@ -74,23 +78,28 @@ for rule in desired_rules:
         _from = manipulator["from"]
         _to = manipulator["to"]
 
-        if "key_codes" in manipulator and manipulator["key_codes"]:
-            for key_code in manipulator["key_codes"]:
-                _from["key_code"] = key_code
+        _pairs = [(_from, _to)]
+        if "reverse" in manipulator and manipulator["reverse"]:
+            _pairs.append((_to, _from))
+
+        for _from, _to in _pairs:
+            if "key_codes" in manipulator and manipulator["key_codes"]:
+                for key_code in manipulator["key_codes"]:
+                    _from["key_code"] = key_code
+                    _manipulators.append(_build_manipulator(_conditions, _from, _to))
+            else:
                 _manipulators.append(_build_manipulator(_conditions, _from, _to))
-        else:
-            _manipulators.append(_build_manipulator(_conditions, _from, _to))
 
     _rules.append({"description": rule["description"], "manipulators": _manipulators})
 
-for config_file in config_files:
-    config_file = os.path.expanduser(config_file)
-    with open(config_file) as _f:
-        config = json.loads(_f.read())
 
-    for p in config["profiles"]:
-        if config_profile_name in p["name"].lower():
-            p["complex_modifications"]["rules"] = _rules
+config_file = os.path.expanduser(config_file)
+with open(config_file) as _f:
+    config = json.loads(_f.read())
 
-    with open(config_file, "w") as _f:
-        _f.write(json.dumps(config, indent=4))
+for p in config["profiles"]:
+    if config_profile_name in p["name"].lower():
+        p["complex_modifications"]["rules"] = _rules
+
+with open(config_file, "w") as _f:
+    _f.write(json.dumps(config, indent=4))
