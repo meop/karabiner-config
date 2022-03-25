@@ -175,12 +175,13 @@
 
   # including cross platform apps
   include:
+    - "^net\\.cozic\\.joplin-desktop$"
+    - "^com\\.facebook\\.fbvscode$"
     - "^com\\.google\\.Chrome$"
     - "^com\\.insomnia\\."
+    - "^org\\.jkiss\\.dbeaver\\."
     - "^com\\.microsoft\\.onenote\\."
     - "^com\\.microsoft\\.VSCode$"
-    - "^com\\.facebook\\.fbvscode$"
-    - "^org\\.jkiss\\.dbeaver\\."
     - "^org\\.wireshark\\.Wireshark$"
 
   manipulators:
