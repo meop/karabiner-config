@@ -77,7 +77,7 @@
           - control
       key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
 
-    # print screen display
+    # print screen
     - from:
         key_code: print_screen
       to:
@@ -86,11 +86,23 @@
           - command
           - shift
 
-    # print screen display partial
+    # print screen window
     - from:
         key_code: print_screen
         modifiers:
           - option
+      to:
+        key_code: "5"
+        modifiers:
+          - command
+          - shift
+
+    # print screen window partial
+    - from:
+        key_code: print_screen
+        modifiers:
+          - option
+          - shift
       to:
         key_code: "4"
         modifiers:
