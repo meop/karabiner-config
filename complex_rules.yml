@@ -192,7 +192,6 @@
     - "^com\\.google\\.Chrome$"
     - "^com\\.insomnia\\."
     - "^org\\.jkiss\\.dbeaver\\."
-    - "^com\\.microsoft\\.onenote\\."
     - "^com\\.microsoft\\.VSCode$"
     - "^org\\.wireshark\\.Wireshark$"
 
@@ -238,7 +237,7 @@
           period,
           slash,
           backslash,
-          grave_accent_and_tilde,
+          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -285,7 +284,7 @@
           period,
           slash,
           backslash,
-          grave_accent_and_tilde,
+          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -332,7 +331,7 @@
           period,
           slash,
           backslash,
-          grave_accent_and_tilde,
+          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -381,6 +380,6 @@
           period,
           slash,
           backslash,
-          grave_accent_and_tilde,
+          # grave_accent_and_tilde,
         ]
       reverse: true

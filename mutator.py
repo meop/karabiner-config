@@ -1,5 +1,6 @@
 import json
 import os
+
 import yaml
 
 complex_rules_file = "complex_rules.yml"
