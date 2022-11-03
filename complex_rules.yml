@@ -192,7 +192,7 @@
     - "^com\\.microsoft\\.Edge"
     - "^com\\.microsoft\\.edgemac"
     - "^com\\.google\\.Chrome$"
-    - "^com\\.chromium\\.Chromium$"
+    - "^org\\.chromium\\.Chromium$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.apple\\.Safari$"
     - "^net\\.cozic\\.joplin-desktop$"
