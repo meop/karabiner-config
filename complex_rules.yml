@@ -187,11 +187,18 @@
 
   # including cross platform apps
   include:
-    - "^net\\.cozic\\.joplin-desktop$"
-    - "^com\\.facebook\\.fbvscode$"
+    - "^org\\.mozilla\\.firefox$"
+    - "^org\\.mozilla\\.nightly$"
+    - "^com\\.microsoft\\.Edge"
+    - "^com\\.microsoft\\.edgemac"
     - "^com\\.google\\.Chrome$"
+    - "^com\\.chromium\\.Chromium$"
+    - "^com\\.brave\\.Browser$"
+    - "^com\\.apple\\.Safari$"
+    - "^net\\.cozic\\.joplin-desktop$"
     - "^com\\.insomnia\\."
     - "^org\\.jkiss\\.dbeaver\\."
+    - "^com\\.facebook\\.fbvscode$"
     - "^com\\.microsoft\\.VSCode$"
     - "^org\\.wireshark\\.Wireshark$"
 
