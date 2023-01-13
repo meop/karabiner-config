@@ -3,20 +3,24 @@ import os
 
 import yaml
 
-complex_rules_file = "complex_rules.yml"
+
 config_file = "~/.config/karabiner/karabiner.json"
 config_profile_name = "pc style"
 
+complex_rules_file = "complex_rules.yml"
+device_rules_file = "device_rules.yml"
+
+
 with open(complex_rules_file) as _f:
-    desired_rules = yaml.load(_f.read(), Loader=yaml.Loader)
+    complex_rules = yaml.load(_f.read(), Loader=yaml.Loader)
+
+
+with open(device_rules_file) as _f:
+    device_rules = yaml.load(_f.read(), Loader=yaml.Loader)
 
 
 def _safe_prefix(input, prefix):
-    return (
-        input
-        if input.startswith(prefix)
-        else prefix + input
-    )
+    return input if input.startswith(prefix) else prefix + input
 
 
 def _get_modifiers(input, outbound=False):
@@ -55,10 +59,10 @@ def _build_manipulator(conditions, from_, to_):
     return manipulator
 
 
-_rules = []
-for rule in desired_rules:
+_complex_rules = []
+for rule in complex_rules:
     _manipulators = []
-    if not "manipulators" in rule or not rule["manipulators"]:
+    if "manipulators" not in rule or not rule["manipulators"]:
         continue
 
     _conditions = []
@@ -91,16 +95,71 @@ for rule in desired_rules:
             else:
                 _manipulators.append(_build_manipulator(_conditions, _from, _to))
 
-    _rules.append({"description": rule["description"], "manipulators": _manipulators})
+    _complex_rules.append(
+        {"description": rule["description"], "manipulators": _manipulators}
+    )
+
+
+_device_rules = []
+for rule in device_rules:
+    _simple_modifications = []
+    if "simple_modifications" not in rule or not rule["simple_modifications"]:
+        continue
+
+    for simple_modification in rule["simple_modifications"]:
+        _from = simple_modification["from"]
+        _to = simple_modification["to"]
+
+        _pairs = [(_from, _to)]
+        if "reverse" in simple_modification and simple_modification["reverse"]:
+            _pairs.append((_to, _from))
+
+        for _from, _to in _pairs:
+            _simple_modifications.append({
+                "from": _from,
+                "to": [_to]
+            })
+
+    _device_rules.append(
+        {
+            "identifiers": rule["identifiers"],
+            "simple_modifications": _simple_modifications,
+        }
+    )
 
 
 config_file = os.path.expanduser(config_file)
 with open(config_file) as _f:
     config = json.loads(_f.read())
 
+
+def _find_device_modifications(device):
+    if "identifiers" not in device:
+        return None
+
+    for device_rule in _device_rules:
+        match = True
+        for key, value in device_rule["identifiers"].items():
+            if (
+                key not in device["identifiers"] or
+                device["identifiers"][key] != value
+            ):
+                match = False
+        if match:
+            return device_rule["simple_modifications"]
+
+
 for p in config["profiles"]:
     if config_profile_name in p["name"].lower():
-        p["complex_modifications"]["rules"] = _rules
+        p["complex_modifications"]["rules"] = _complex_rules
+
+        for device in p["devices"]:
+            modifications = _find_device_modifications(device)
+            if not modifications:
+                continue
+
+            device["simple_modifications"] = modifications
+
 
 with open(config_file, "w") as _f:
     _f.write(json.dumps(config, indent=4))

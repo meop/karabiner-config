@@ -1,16 +1,20 @@
 ---
 # changes from Karabiner:
 
-# 1. adding rule level conditions
+# * adding rule level conditions
 # and inlining them into manipulators
 
-# 2. not using macros
+# * not using macros
 # ie, multiple outputs from single input
 # so simplified mappings
 
-# 3. not allowing optional modifiers
+# * not allowing optional modifiers
 # as this just introduces greedy capture
 # and unexpected behaviors
+
+# * adding built-in reverse rule pairs
+# normalizing the config file
+
 
 - description: PC style OS interaction
 
