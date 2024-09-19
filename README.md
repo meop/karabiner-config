@@ -34,7 +34,15 @@ Edit complex_rules.yml
 
 Edit the top of mutator.py file to set your Karabiner-Elements profile
 
-Run "python mutator.py"
+Run:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+python3 mutator.py
+```
 
 ## Future
 

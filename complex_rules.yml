@@ -192,6 +192,7 @@
     - "^com\\.microsoft\\.Edge"
     - "^com\\.microsoft\\.edgemac"
     - "^com\\.google\\.Chrome$"
+    - "^com\\.google\\.Chrome.canary$"
     - "^org\\.chromium\\.Chromium$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.apple\\.Safari$"
