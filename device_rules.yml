@@ -1,0 +1,34 @@
+---
+# changes from Karabiner:
+
+# * adding built-in reverse rule pairs
+# normalizing the config file
+
+
+- identifiers:
+    # Q: MacOS can swap modifier keys itself right?
+    # A: yes but the Fn key swap seems to be bugged
+    # whereas this app does it correctly
+
+    # Apple keyboard on laptop
+    is_keyboard: true
+    is_pointing_device: false
+    product_id: 0
+    vendor_id: 0
+
+  simple_modifications:
+    - from:
+        apple_vendor_top_case_key_code: keyboard_fn
+      to:
+        key_code: left_control
+      reverse: true
+    - from:
+        key_code: left_command
+      to:
+        key_code: left_option
+      reverse: true
+    - from:
+        key_code: right_command
+      to:
+        key_code: right_option
+      reverse: true
