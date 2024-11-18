@@ -4,7 +4,6 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
-
 - identifiers:
     # Q: MacOS can swap modifier keys itself right?
     # A: yes but the Fn key swap seems to be bugged

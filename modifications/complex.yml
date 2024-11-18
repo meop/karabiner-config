@@ -15,16 +15,11 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
+- description: pc style os interaction
 
-- description: PC style OS interaction
-
-  # excluding apps that already use
-  # PC style controls
-  exclude:
-    - "^com\\.microsoft\\.rdc\\."
-    - "^com\\.realvnc\\.vncviewer$"
-    - "^com\\.valvesoftware\\."
-    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+  # excluding apps that do their own remapping
+  # exclude:
+  #   - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
     # open task manager
@@ -55,20 +50,20 @@
           - option
       key_codes:
         [
+          d,
+          e,
+          f,
+          g,
+          i,
+          j,
+          k,
+          t,
+          u,
+          return_or_enter,
           left_arrow,
           up_arrow,
           down_arrow,
           right_arrow,
-          u,
-          j,
-          k,
-          i,
-          d,
-          f,
-          g,
-          e,
-          t,
-          return_or_enter,
         ]
       reverse: true
 
@@ -79,7 +74,13 @@
       to:
         modifiers:
           - control
-      key_codes: [left_arrow, up_arrow, down_arrow, right_arrow]
+      key_codes:
+        [
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow
+        ]
 
     # print screen
     - from:
@@ -146,17 +147,11 @@
           - shift
 
 
-- description: PC style page navigation
+- description: pc style page navigation
 
-  # excluding apps that already use
-  # PC style controls
-  # or have their own unique controls
-  exclude:
-    - "^com\\.googlecode\\.iterm2$"
-    - "^com\\.microsoft\\.rdc\\."
-    - "^com\\.realvnc\\.vncviewer$"
-    - "^com\\.valvesoftware\\."
-    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+  # excluding apps that do their own remapping
+  # exclude:
+  #   - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
     # pages
@@ -166,7 +161,11 @@
       to:
         modifiers:
           - command
-      key_codes: [left_arrow, right_arrow]
+      key_codes:
+        [
+          left_arrow,
+          right_arrow,
+        ]
 
     # lines on pages
     - from:
@@ -175,7 +174,11 @@
       to:
         modifiers:
           - command
-      key_codes: [up_arrow, down_arrow]
+      key_codes:
+        [
+          up_arrow,
+          down_arrow,
+        ]
 
     # words on lines
     - from:
@@ -184,27 +187,36 @@
       to:
         modifiers:
           - option
-      key_codes: [left_arrow, right_arrow]
+      key_codes:
+        [
+          left_arrow,
+          right_arrow,
+        ]
 
 
-- description: PC style control vs command
+- description: pc style control vs command
 
   # including cross platform apps
   include:
-    - "^org\\.mozilla\\.firefox$"
-    - "^org\\.mozilla\\.nightly$"
+    - "^com\\.apple\\.Safari$"
+    - "^com\\.brave\\.Browser$"
+    - "^com\\.facebook\\.fbvscode$"
+    - "^com\\.google\\.Chrome.canary$"
+    - "^com\\.google\\.Chrome$"
+    - "^com\\.googlecode\\.iterm2$"
+    - "^com\\.insomnia\\."
     - "^com\\.microsoft\\.Edge"
     - "^com\\.microsoft\\.edgemac"
-    - "^com\\.google\\.Chrome$"
-    - "^com\\.google\\.Chrome.canary$"
-    - "^org\\.chromium\\.Chromium$"
-    - "^com\\.brave\\.Browser$"
-    - "^com\\.apple\\.Safari$"
-    - "^net\\.cozic\\.joplin-desktop$"
-    - "^com\\.insomnia\\."
-    - "^org\\.jkiss\\.dbeaver\\."
-    - "^com\\.facebook\\.fbvscode$"
+    - "^com\\.microsoft\\.rdc\\."
     - "^com\\.microsoft\\.VSCode$"
+    - "^net\\.cozic\\.joplin-desktop$"
+    - "^org\\.chromium\\.Chromium$"
+    - "^org\\.jkiss\\.dbeaver\\."
+    - "^org\\.mozilla\\.firefox$"
+    - "^org\\.mozilla\\.nightly$"
+    - "^com\\.valvesoftware\\."
+    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+    - "^com\\.realvnc\\.vncviewer$"
     - "^org\\.wireshark\\.Wireshark$"
 
   manipulators:
@@ -245,11 +257,10 @@
           z,
           hyphen,
           equal_sign,
+          backslash,
           comma,
           period,
           slash,
-          backslash,
-          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -292,11 +303,10 @@
           z,
           hyphen,
           equal_sign,
+          backslash,
           comma,
           period,
           slash,
-          backslash,
-          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -339,11 +349,10 @@
           z,
           hyphen,
           equal_sign,
+          backslash,
           comma,
           period,
           slash,
-          backslash,
-          # grave_accent_and_tilde,
         ]
       reverse: true
 
@@ -388,10 +397,192 @@
           z,
           hyphen,
           equal_sign,
+          backslash,
           comma,
           period,
           slash,
-          backslash,
-          # grave_accent_and_tilde,
         ]
       reverse: true
+
+- description: pc style reverse vnc viewer
+
+ # RealVNC Viewer does this
+ #  cmdL -> altL
+ #  cmdR -> winR
+ # so it needs to be reversed again
+
+  include:
+    - "^com\\.realvnc\\.vncviewer$"
+
+  manipulators:
+    - from:
+        modifiers:
+          - right_option
+      to:
+        modifiers:
+          - left_command
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+          grave_accent_and_tilde,
+          spacebar,
+          comma,
+          period,
+          slash,
+          open_bracket,
+          close_bracket,
+          backslash,
+          hyphen,
+          equal_sign,
+          delete_or_backspace,
+          return_or_enter,
+          insert,
+          delete_forward,
+          home,
+          end,
+          page_up,
+          page_down,
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+        ]
+    - from:
+        modifiers:
+          - left_option
+      to:
+        modifiers:
+          - left_command
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+          grave_accent_and_tilde,
+          spacebar,
+          comma,
+          period,
+          slash,
+          open_bracket,
+          close_bracket,
+          backslash,
+          hyphen,
+          equal_sign,
+          delete_or_backspace,
+          return_or_enter,
+          insert,
+          delete_forward,
+          home,
+          end,
+          page_up,
+          page_down,
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+        ]
+    - from:
+        modifiers:
+          - left_command
+      to:
+        modifiers:
+          - right_command
+      key_codes:
+        [
+          a,
+          b,
+          c,
+          d,
+          e,
+          f,
+          g,
+          h,
+          i,
+          j,
+          k,
+          l,
+          m,
+          n,
+          o,
+          p,
+          q,
+          r,
+          s,
+          t,
+          u,
+          v,
+          w,
+          x,
+          y,
+          z,
+          grave_accent_and_tilde,
+          spacebar,
+          comma,
+          period,
+          slash,
+          open_bracket,
+          close_bracket,
+          backslash,
+          hyphen,
+          equal_sign,
+          delete_or_backspace,
+          return_or_enter,
+          insert,
+          delete_forward,
+          home,
+          end,
+          page_up,
+          page_down,
+          left_arrow,
+          up_arrow,
+          down_arrow,
+          right_arrow,
+        ]

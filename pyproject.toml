@@ -1,0 +1,9 @@
+[project]
+name = "karabiner-config"
+version = "0.1.0"
+description = "Mutate Karabiner config Default profile"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "pyyaml>=6.0.2,<6.1",
+]

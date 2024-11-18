@@ -5,18 +5,18 @@ import yaml
 
 
 config_file = "~/.config/karabiner/karabiner.json"
-config_profile_name = "pc style"
+config_profile_name = "default"
 
-complex_rules_file = "complex_rules.yml"
-device_rules_file = "device_rules.yml"
-
-
-with open(complex_rules_file) as _f:
-    complex_rules = yaml.load(_f.read(), Loader=yaml.Loader)
+complex_mods_file = "modifications/complex.yml"
+simple_mods_file = "modifications/simple.yml"
 
 
-with open(device_rules_file) as _f:
-    device_rules = yaml.load(_f.read(), Loader=yaml.Loader)
+with open(complex_mods_file) as _f:
+    complex_mods = yaml.load(_f.read(), Loader=yaml.Loader)
+
+
+with open(simple_mods_file) as _f:
+    simple_mods = yaml.load(_f.read(), Loader=yaml.Loader)
 
 
 def _safe_prefix(input, prefix):
@@ -59,18 +59,18 @@ def _build_manipulator(conditions, from_, to_):
     return manipulator
 
 
-_complex_rules = []
-for rule in complex_rules:
+_complex_mods = []
+for mod in complex_mods:
     _manipulators = []
-    if "manipulators" not in rule or not rule["manipulators"]:
+    if "manipulators" not in mod or not mod["manipulators"]:
         continue
 
     _conditions = []
     for _condition in ["include", "exclude"]:
-        if _condition in rule and rule[_condition]:
+        if _condition in mod and mod[_condition]:
             _conditions.append(
                 {
-                    "bundle_identifiers": rule[_condition],
+                    "bundle_identifiers": mod[_condition],
                     "type": (
                         "frontmost_application_if"
                         if _condition == "include"
@@ -79,7 +79,7 @@ for rule in complex_rules:
                 }
             )
 
-    for manipulator in rule["manipulators"]:
+    for manipulator in mod["manipulators"]:
         _from = manipulator["from"]
         _to = manipulator["to"]
 
@@ -95,18 +95,18 @@ for rule in complex_rules:
             else:
                 _manipulators.append(_build_manipulator(_conditions, _from, _to))
 
-    _complex_rules.append(
-        {"description": rule["description"], "manipulators": _manipulators}
+    _complex_mods.append(
+        {"description": mod["description"], "manipulators": _manipulators}
     )
 
 
-_device_rules = []
-for rule in device_rules:
+_simple_mods = []
+for mod in simple_mods:
     _simple_modifications = []
-    if "simple_modifications" not in rule or not rule["simple_modifications"]:
+    if "simple_modifications" not in mod or not mod["simple_modifications"]:
         continue
 
-    for simple_modification in rule["simple_modifications"]:
+    for simple_modification in mod["simple_modifications"]:
         _from = simple_modification["from"]
         _to = simple_modification["to"]
 
@@ -115,14 +115,11 @@ for rule in device_rules:
             _pairs.append((_to, _from))
 
         for _from, _to in _pairs:
-            _simple_modifications.append({
-                "from": _from,
-                "to": [_to]
-            })
+            _simple_modifications.append({"from": _from, "to": [_to]})
 
-    _device_rules.append(
+    _simple_mods.append(
         {
-            "identifiers": rule["identifiers"],
+            "identifiers": mod["identifiers"],
             "simple_modifications": _simple_modifications,
         }
     )
@@ -137,21 +134,18 @@ def _find_device_modifications(device):
     if "identifiers" not in device:
         return None
 
-    for device_rule in _device_rules:
+    for mod in _simple_mods:
         match = True
-        for key, value in device_rule["identifiers"].items():
-            if (
-                key not in device["identifiers"] or
-                device["identifiers"][key] != value
-            ):
+        for key, value in mod["identifiers"].items():
+            if key not in device["identifiers"] or device["identifiers"][key] != value:
                 match = False
         if match:
-            return device_rule["simple_modifications"]
+            return mod["simple_modifications"]
 
 
 for p in config["profiles"]:
     if config_profile_name in p["name"].lower():
-        p["complex_modifications"]["rules"] = _complex_rules
+        p["complex_modifications"]["rules"] = _complex_mods
 
         for device in p["devices"]:
             modifications = _find_device_modifications(device)
