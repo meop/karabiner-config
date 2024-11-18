@@ -19,6 +19,7 @@
 
   # excluding apps that do their own remapping
   # exclude:
+  #   - "^com\\.googlecode\\.iterm2$"
   #   - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
@@ -151,6 +152,7 @@
 
   # excluding apps that do their own remapping
   # exclude:
+  #   - "^com\\.googlecode\\.iterm2$"
   #   - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
@@ -198,20 +200,16 @@
 
   # including cross platform apps
   include:
-    - "^com\\.apple\\.Safari$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
-    - "^com\\.googlecode\\.iterm2$"
-    - "^com\\.insomnia\\."
     - "^com\\.microsoft\\.Edge"
     - "^com\\.microsoft\\.edgemac"
     - "^com\\.microsoft\\.rdc\\."
     - "^com\\.microsoft\\.VSCode$"
     - "^net\\.cozic\\.joplin-desktop$"
     - "^org\\.chromium\\.Chromium$"
-    - "^org\\.jkiss\\.dbeaver\\."
     - "^org\\.mozilla\\.firefox$"
     - "^org\\.mozilla\\.nightly$"
     - "^com\\.valvesoftware\\."
