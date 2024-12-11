@@ -6,7 +6,7 @@ My personal use-case is the desire to have more PC Style controls in place.
 
 This project exists because the desktop UI is not very flexible for "Complex modifications":
 
-- No editing of "Complex modifications" from the UI itself
+- No easy editing of "Complex modifications" from the UI itself
 - Include / exclude rules are per individual manipulator, not "group of" manipulators
 - Modifiers are per key code, not "group of" key codes
 - No simple way to just "reverse" modifiers but keep same key codes
@@ -24,13 +24,12 @@ Karabiner-Elements is installed and contains a named profile ready for modificat
 
 This project only modifies an existing profile, does not create a new one.. for now.
 
-Python 3.8+ needs to be installed with packages in requirements.txt
-
 ## Usage
 
-Edit complex_rules.yml
+Edit complex.yml
 
-Edit the top of mutator.py file to set your Karabiner-Elements profile
+Edit the top of mutator.py file to set config_profile_name if needed
+
 
 Run:
 

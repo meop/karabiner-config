@@ -15,20 +15,23 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
+
 - description: pc style os interaction
 
-  # excluding apps that do their own remapping
-  # exclude:
-  #   - "^com\\.googlecode\\.iterm2$"
-  #   - "^com\\.realvnc\\.vncviewer$"
+  exclude:
+    - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
+
     # open task manager
     - from:
         key_code: escape
         modifiers:
-          - control
-          - shift
+          mandatory:
+            - control
+            - shift
+          optional:
+            - caps_lock
       to:
         shell_command: "open -a 'Activity Monitor.app'"
 
@@ -36,52 +39,55 @@
     - from:
         key_code: e
         modifiers:
-          - command
+          mandatory:
+            - command
+          optional:
+            - caps_lock
       to:
         shell_command: "open -a 'Finder.app'"
 
     # virtual desktop splitting
     - from:
         modifiers:
-          - command
-          - option
+          mandatory:
+            - command
+          optional:
+            - option
+            - caps_lock
       to:
         modifiers:
           - control
-          - option
       key_codes:
-        [
-          d,
-          e,
-          f,
-          g,
-          i,
-          j,
-          k,
-          t,
-          u,
-          return_or_enter,
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-        ]
-      reverse: true
+        - left_arrow
+        - right_arrow
+        - up_arrow
+        - down_arrow
+        - u
+        - i
+        - j
+        - k
+        - d
+        - f
+        - g
+        - e
+        - t
+        - return_or_enter
 
     # virtual desktop navigation
     - from:
         modifiers:
-          - command
+          mandatory:
+            - command
+          optional:
+            - caps_lock
       to:
         modifiers:
           - control
       key_codes:
-        [
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow
-        ]
+        - left_arrow
+        - right_arrow
+        - up_arrow
+        - down_arrow
 
     # print screen
     - from:
@@ -96,7 +102,10 @@
     - from:
         key_code: print_screen
         modifiers:
-          - option
+          mandatory:
+            - option
+          optional:
+            - caps_lock
       to:
         key_code: "5"
         modifiers:
@@ -107,8 +116,11 @@
     - from:
         key_code: print_screen
         modifiers:
-          - option
-          - shift
+          mandatory:
+            - option
+            - shift
+          optional:
+            - caps_lock
       to:
         key_code: "4"
         modifiers:
@@ -119,7 +131,10 @@
     - from:
         key_code: tab
         modifiers:
-          - option
+          mandatory:
+            - option
+          optional:
+            - caps_lock
       to:
         modifiers:
           - command
@@ -128,8 +143,11 @@
     - from:
         key_code: tab
         modifiers:
-          - control
-          - shift
+          mandatory:
+            - control
+            - shift
+          optional:
+            - caps_lock
       to:
         key_code: open_bracket
         modifiers:
@@ -140,7 +158,10 @@
     - from:
         key_code: tab
         modifiers:
-          - control
+          mandatory:
+            - control
+          optional:
+            - caps_lock
       to:
         key_code: close_bracket
         modifiers:
@@ -148,62 +169,106 @@
           - shift
 
 
-- description: pc style page navigation
+- description: pc style browser interaction
 
-  # excluding apps that do their own remapping
-  # exclude:
-  #   - "^com\\.googlecode\\.iterm2$"
-  #   - "^com\\.realvnc\\.vncviewer$"
+  include:
+    - "^com\\.apple\\.Safari$"
+    - "^com\\.brave\\.Browser$"
+    - "^com\\.google\\.Chrome.canary$"
+    - "^com\\.google\\.Chrome$"
+    - "^com\\.microsoft\\.Edge"
+    - "^com\\.microsoft\\.edgemac"
+    - "^org\\.chromium\\.Chromium$"
+    - "^org\\.mozilla\\.firefox$"
+    - "^org\\.mozilla\\.nightly$"
 
   manipulators:
-    # pages
+
+    # page navigation
     - from:
+        key_code: left_arrow
         modifiers:
-          - option
+          mandatory:
+            - option
+          optional:
+            - caps_lock
       to:
+        key_code: open_bracket
         modifiers:
           - command
-      key_codes:
-        [
-          left_arrow,
-          right_arrow,
-        ]
-
-    # lines on pages
     - from:
+        key_code: right_arrow
         modifiers:
-          - control
+          mandatory:
+            - option
+          optional:
+            - caps_lock
       to:
+        key_code: close_bracket
         modifiers:
           - command
-      key_codes:
-        [
-          up_arrow,
-          down_arrow,
-        ]
 
-    # words on lines
+
+- description: pc style editor interaction
+
+  include:
+    - "^com\\.facebook\\.fbvscode$"
+    - "^com\\.microsoft\\.VSCode$"
+    - "^net\\.cozic\\.joplin-desktop$"
+
+  manipulators:
+
+    # page navigation
     - from:
+        key_code: left_arrow
+        modifiers:
+          mandatory:
+            - option
+          optional:
+            - caps_lock
+      to:
+        key_code: hyphen
         modifiers:
           - control
+    - from:
+        key_code: right_arrow
+        modifiers:
+          mandatory:
+            - option
+          optional:
+            - caps_lock
+      to:
+        key_code: hyphen
+        modifiers:
+          - control
+          - shift
+
+    # word navigation
+    - from:
+        modifiers:
+          mandatory:
+            - control
+          optional:
+            - shift
+            - caps_lock
       to:
         modifiers:
           - option
       key_codes:
-        [
-          left_arrow,
-          right_arrow,
-        ]
+        - left_arrow
+        - right_arrow
 
 
 - description: pc style control vs command
 
-  # including cross platform apps
   include:
+    - "^com\\.apple\\.finder$"
+    - "^com\\.apple\\.Safari$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
+    - "^com\\.googlecode\\.iterm2$"
     - "^com\\.microsoft\\.Edge"
     - "^com\\.microsoft\\.edgemac"
     - "^com\\.microsoft\\.rdc\\."
@@ -212,375 +277,94 @@
     - "^org\\.chromium\\.Chromium$"
     - "^org\\.mozilla\\.firefox$"
     - "^org\\.mozilla\\.nightly$"
-    - "^com\\.valvesoftware\\."
-    - "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
-    - "^com\\.realvnc\\.vncviewer$"
-    - "^org\\.wireshark\\.Wireshark$"
 
   manipulators:
+
     # common controls
     - from:
         modifiers:
-          - control
+          mandatory:
+            - control
+          optional:
+            - shift
+            - option
+            - caps_lock
       to:
         modifiers:
           - command
       key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          hyphen,
-          equal_sign,
-          backslash,
-          comma,
-          period,
-          slash,
-        ]
-      reverse: true
+        - a
+        - b
+        - c
+        - d
+        - e
+        - f
+        - g
+        - h
+        - i
+        - j
+        - k
+        - l
+        - m
+        - n
+        - o
+        - p
+        - q
+        - r
+        - s
+        - t
+        - u
+        - v
+        - w
+        - x
+        - y
+        - z
+        - comma
+        - period
+        - slash
+        - semicolon
+        - quote
+        - open_bracket
+        - close_bracket
+        # - spacebar
+        # - tab
+        # - backslash
+        # - grave_accent_and_tilde
+        # - hyphen
+        # - equal_sign
+        # - delete_or_backspace
+        # - return_or_enter
+        # - insert
+        # - delete_forward
+        # - home
+        # - end
+        # - page_up
+        # - page_down
+        # - left_arrow
+        # - right_arrow
+        # - up_arrow
+        # - down_arrow
 
-    # common meta controls
-    - from:
-        modifiers:
-          - control
-          - shift
-      to:
-        modifiers:
-          - command
-          - shift
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          hyphen,
-          equal_sign,
-          backslash,
-          comma,
-          period,
-          slash,
-        ]
-      reverse: true
-
-    # common alt controls
-    - from:
-        modifiers:
-          - control
-          - option
-      to:
-        modifiers:
-          - command
-          - option
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          hyphen,
-          equal_sign,
-          backslash,
-          comma,
-          period,
-          slash,
-        ]
-      reverse: true
-
-    # common alt meta controls
-    - from:
-        modifiers:
-          - control
-          - option
-          - shift
-      to:
-        modifiers:
-          - command
-          - option
-          - shift
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          hyphen,
-          equal_sign,
-          backslash,
-          comma,
-          period,
-          slash,
-        ]
-      reverse: true
 
 - description: pc style reverse vnc viewer
-
- # RealVNC Viewer does this
- #  cmdL -> altL
- #  cmdR -> winR
- # so it needs to be reversed again
 
   include:
     - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
+
     - from:
+        key_code: left_option
         modifiers:
-          - right_option
+          optional:
+            - any
       to:
-        modifiers:
-          - left_command
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          grave_accent_and_tilde,
-          spacebar,
-          comma,
-          period,
-          slash,
-          open_bracket,
-          close_bracket,
-          backslash,
-          hyphen,
-          equal_sign,
-          delete_or_backspace,
-          return_or_enter,
-          insert,
-          delete_forward,
-          home,
-          end,
-          page_up,
-          page_down,
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-        ]
+        key_code: left_command
+
     - from:
+        key_code: left_command
         modifiers:
-          - left_option
+          optional:
+            - any
       to:
-        modifiers:
-          - left_command
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          grave_accent_and_tilde,
-          spacebar,
-          comma,
-          period,
-          slash,
-          open_bracket,
-          close_bracket,
-          backslash,
-          hyphen,
-          equal_sign,
-          delete_or_backspace,
-          return_or_enter,
-          insert,
-          delete_forward,
-          home,
-          end,
-          page_up,
-          page_down,
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-        ]
-    - from:
-        modifiers:
-          - left_command
-      to:
-        modifiers:
-          - right_command
-      key_codes:
-        [
-          a,
-          b,
-          c,
-          d,
-          e,
-          f,
-          g,
-          h,
-          i,
-          j,
-          k,
-          l,
-          m,
-          n,
-          o,
-          p,
-          q,
-          r,
-          s,
-          t,
-          u,
-          v,
-          w,
-          x,
-          y,
-          z,
-          grave_accent_and_tilde,
-          spacebar,
-          comma,
-          period,
-          slash,
-          open_bracket,
-          close_bracket,
-          backslash,
-          hyphen,
-          equal_sign,
-          delete_or_backspace,
-          return_or_enter,
-          insert,
-          delete_forward,
-          home,
-          end,
-          page_up,
-          page_down,
-          left_arrow,
-          up_arrow,
-          down_arrow,
-          right_arrow,
-        ]
+        key_code: right_command
