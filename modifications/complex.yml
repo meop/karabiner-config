@@ -72,6 +72,7 @@
         - e
         - t
         - return_or_enter
+      reverse: true
 
     # virtual desktop navigation
     - from:
@@ -88,6 +89,7 @@
         - right_arrow
         - up_arrow
         - down_arrow
+      reverse: true
 
     # print screen
     - from:
@@ -136,6 +138,7 @@
           optional:
             - caps_lock
       to:
+        key_code: tab
         modifiers:
           - command
 
@@ -184,7 +187,7 @@
 
   manipulators:
 
-    # page navigation
+    # browser page navigation
     - from:
         key_code: left_arrow
         modifiers:
@@ -208,6 +211,21 @@
         modifiers:
           - command
 
+    # word navigation
+    - from:
+        modifiers:
+          mandatory:
+            - control
+          optional:
+            - shift
+            - caps_lock
+      to:
+        modifiers:
+          - option
+      key_codes:
+        - left_arrow
+        - right_arrow
+
 
 - description: pc style editor interaction
 
@@ -218,7 +236,7 @@
 
   manipulators:
 
-    # page navigation
+    # editor page navigation
     - from:
         key_code: left_arrow
         modifiers:
@@ -344,6 +362,7 @@
         # - right_arrow
         # - up_arrow
         # - down_arrow
+      reverse: true
 
 
 - description: pc style reverse vnc viewer
