@@ -15,7 +15,6 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
-
 - description: pc style os interaction
 
   exclude:
@@ -52,8 +51,8 @@
           mandatory:
             - command
           optional:
-            - option
             - caps_lock
+            - option
       to:
         modifiers:
           - control
@@ -172,6 +171,30 @@
           - shift
 
 
+- description: pc style reverse vnc viewer
+
+  include:
+    - "^com\\.realvnc\\.vncviewer$"
+
+  manipulators:
+
+    - from:
+        key_code: left_option
+        modifiers:
+          optional:
+            - any
+      to:
+        key_code: left_command
+
+    - from:
+        key_code: left_command
+        modifiers:
+          optional:
+            - any
+      to:
+        key_code: right_command
+
+
 - description: pc style browser interaction
 
   include:
@@ -217,14 +240,37 @@
           mandatory:
             - control
           optional:
-            - shift
             - caps_lock
+            - shift
       to:
         modifiers:
           - option
       key_codes:
         - left_arrow
         - right_arrow
+
+
+- description: pc style console interaction
+
+  include:
+    - "^com\\.googlecode\\.iterm2$"
+
+  manipulators:
+
+    # terminal multiplexor
+    - from:
+        modifiers:
+          mandatory:
+            - control
+          optional:
+            - caps_lock
+            - shift
+            - option
+      to:
+        modifiers:
+          - control
+      key_codes:
+        - b
 
 
 - description: pc style editor interaction
@@ -267,8 +313,8 @@
           mandatory:
             - control
           optional:
-            - shift
             - caps_lock
+            - shift
       to:
         modifiers:
           - option
@@ -277,7 +323,7 @@
         - right_arrow
 
 
-- description: pc style control vs command
+- description: pc style basic interaction
 
   include:
     - "^com\\.apple\\.finder$"
@@ -304,9 +350,9 @@
           mandatory:
             - control
           optional:
+            - caps_lock
             - shift
             - option
-            - caps_lock
       to:
         modifiers:
           - command
@@ -362,28 +408,4 @@
         # - right_arrow
         # - up_arrow
         # - down_arrow
-      reverse: true
-
-
-- description: pc style reverse vnc viewer
-
-  include:
-    - "^com\\.realvnc\\.vncviewer$"
-
-  manipulators:
-
-    - from:
-        key_code: left_option
-        modifiers:
-          optional:
-            - any
-      to:
-        key_code: left_command
-
-    - from:
-        key_code: left_command
-        modifiers:
-          optional:
-            - any
-      to:
-        key_code: right_command
+      # reverse: true

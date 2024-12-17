@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 
@@ -43,6 +44,17 @@ def _build_manipulator(conditions, from_, to_):
   return manipulator
 
 
+def _build_reverse_manipulator(manipulator):
+  reverse_manipulator = copy.deepcopy(manipulator)
+  reverse_manipulator['from']['key_code'] = manipulator['to'][0]['key_code']
+  reverse_manipulator['from']['modifiers']['mandatory'] = manipulator['to'][0]['modifiers']
+
+  reverse_manipulator['to'][0]['key_code'] = manipulator['from']['key_code']
+  reverse_manipulator['to'][0]['modifiers'] = manipulator['from']['modifiers']['mandatory']
+
+  return reverse_manipulator
+
+
 _complex_mods = []
 for mod in complex_mods:
   _manipulators = []
@@ -67,17 +79,19 @@ for mod in complex_mods:
     _from = manipulator['from']
     _to = manipulator['to']
 
-    _pairs = [(_from, _to)]
-    if 'reverse' in manipulator and manipulator['reverse']:
-      _pairs.append((_to, _from))
-
-    for _from, _to in _pairs:
-      if 'key_codes' in manipulator and manipulator['key_codes']:
-        for key_code in manipulator['key_codes']:
-          _from['key_code'] = key_code
-          _manipulators.append(_build_manipulator(_conditions, _from, _to))
-      else:
-        _manipulators.append(_build_manipulator(_conditions, _from, _to))
+    if 'key_codes' in manipulator and manipulator['key_codes']:
+      for key_code in manipulator['key_codes']:
+        _from['key_code'] = key_code
+        _to['key_code'] = key_code
+        _m = _build_manipulator(_conditions, _from, _to)
+        _manipulators.append(_m)
+        if 'reverse' in manipulator and manipulator['reverse']:
+          _manipulators.append(_build_reverse_manipulator(_m))
+    else:
+      _m = _build_manipulator(_conditions, _from, _to)
+      _manipulators.append(_m)
+      if 'reverse' in manipulator and manipulator['reverse']:
+        _manipulators.append(_build_reverse_manipulator(_m))
 
   _complex_mods.append(
     {'description': mod['description'], 'manipulators': _manipulators}
@@ -94,12 +108,9 @@ for mod in simple_mods:
     _from = simple_modification['from']
     _to = simple_modification['to']
 
-    _pairs = [(_from, _to)]
+    _simple_modifications.append({'from': _from, 'to': [_to]})
     if 'reverse' in simple_modification and simple_modification['reverse']:
-      _pairs.append((_to, _from))
-
-    for _from, _to in _pairs:
-      _simple_modifications.append({'from': _from, 'to': [_to]})
+      _simple_modifications.append({'from': _to, 'to': [_from]})
 
   _simple_mods.append(
     {
