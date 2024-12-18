@@ -15,161 +15,6 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
-- description: pc style os interaction
-
-  exclude:
-    - "^com\\.realvnc\\.vncviewer$"
-
-  manipulators:
-
-    # open task manager
-    - from:
-        key_code: escape
-        modifiers:
-          mandatory:
-            - control
-            - shift
-          optional:
-            - caps_lock
-      to:
-        shell_command: "open -a 'Activity Monitor.app'"
-
-    # open document explorer
-    - from:
-        key_code: e
-        modifiers:
-          mandatory:
-            - command
-          optional:
-            - caps_lock
-      to:
-        shell_command: "open -a 'Finder.app'"
-
-    # virtual desktop splitting
-    - from:
-        modifiers:
-          mandatory:
-            - command
-          optional:
-            - caps_lock
-            - option
-      to:
-        modifiers:
-          - control
-      key_codes:
-        - left_arrow
-        - right_arrow
-        - up_arrow
-        - down_arrow
-        - u
-        - i
-        - j
-        - k
-        - d
-        - f
-        - g
-        - e
-        - t
-        - return_or_enter
-      reverse: true
-
-    # virtual desktop navigation
-    - from:
-        modifiers:
-          mandatory:
-            - command
-          optional:
-            - caps_lock
-      to:
-        modifiers:
-          - control
-      key_codes:
-        - left_arrow
-        - right_arrow
-        - up_arrow
-        - down_arrow
-      reverse: true
-
-    # print screen
-    - from:
-        key_code: print_screen
-      to:
-        key_code: "3"
-        modifiers:
-          - command
-          - shift
-
-    # print screen window
-    - from:
-        key_code: print_screen
-        modifiers:
-          mandatory:
-            - option
-          optional:
-            - caps_lock
-      to:
-        key_code: "5"
-        modifiers:
-          - command
-          - shift
-
-    # print screen window partial
-    - from:
-        key_code: print_screen
-        modifiers:
-          mandatory:
-            - option
-            - shift
-          optional:
-            - caps_lock
-      to:
-        key_code: "4"
-        modifiers:
-          - command
-          - shift
-
-    # cycle between applications
-    - from:
-        key_code: tab
-        modifiers:
-          mandatory:
-            - option
-          optional:
-            - caps_lock
-      to:
-        key_code: tab
-        modifiers:
-          - command
-
-    # switch to previous tab
-    - from:
-        key_code: tab
-        modifiers:
-          mandatory:
-            - control
-            - shift
-          optional:
-            - caps_lock
-      to:
-        key_code: open_bracket
-        modifiers:
-          - command
-          - shift
-
-    # switch to next tab
-    - from:
-        key_code: tab
-        modifiers:
-          mandatory:
-            - control
-          optional:
-            - caps_lock
-      to:
-        key_code: close_bracket
-        modifiers:
-          - command
-          - shift
-
 
 - description: pc style reverse vnc viewer
 
@@ -409,3 +254,157 @@
         # - up_arrow
         # - down_arrow
       # reverse: true
+
+
+- description: pc style os interaction
+
+  exclude:
+    - "^com\\.realvnc\\.vncviewer$"
+
+  manipulators:
+
+    # open task manager
+    - from:
+        key_code: escape
+        modifiers:
+          mandatory:
+            - control
+            - shift
+          optional:
+            - caps_lock
+      to:
+        shell_command: "open -a 'Activity Monitor.app'"
+
+    # open document explorer
+    - from:
+        key_code: e
+        modifiers:
+          mandatory:
+            - command
+          optional:
+            - caps_lock
+      to:
+        shell_command: "open -a 'Finder.app'"
+
+    # virtual desktop splitting
+    - from:
+        modifiers:
+          mandatory:
+            - command
+          optional:
+            - caps_lock
+            - option
+      to:
+        modifiers:
+          - control
+      key_codes:
+        - left_arrow
+        - right_arrow
+        - up_arrow
+        - down_arrow
+        - u
+        - i
+        - j
+        - k
+        - d
+        - f
+        - g
+        - e
+        - t
+        - return_or_enter
+
+    # virtual desktop navigation
+    - from:
+        modifiers:
+          mandatory:
+            - command
+          optional:
+            - caps_lock
+      to:
+        modifiers:
+          - control
+      key_codes:
+        - left_arrow
+        - right_arrow
+        - up_arrow
+        - down_arrow
+
+    # print screen
+    - from:
+        key_code: print_screen
+      to:
+        key_code: "3"
+        modifiers:
+          - command
+          - shift
+
+    # print screen window
+    - from:
+        key_code: print_screen
+        modifiers:
+          mandatory:
+            - option
+          optional:
+            - caps_lock
+      to:
+        key_code: "5"
+        modifiers:
+          - command
+          - shift
+
+    # print screen window partial
+    - from:
+        key_code: print_screen
+        modifiers:
+          mandatory:
+            - option
+            - shift
+          optional:
+            - caps_lock
+      to:
+        key_code: "4"
+        modifiers:
+          - command
+          - shift
+
+    # cycle between applications
+    - from:
+        key_code: tab
+        modifiers:
+          mandatory:
+            - option
+          optional:
+            - caps_lock
+      to:
+        key_code: tab
+        modifiers:
+          - command
+
+    # switch to previous tab
+    - from:
+        key_code: tab
+        modifiers:
+          mandatory:
+            - control
+            - shift
+          optional:
+            - caps_lock
+      to:
+        key_code: open_bracket
+        modifiers:
+          - command
+          - shift
+
+    # switch to next tab
+    - from:
+        key_code: tab
+        modifiers:
+          mandatory:
+            - control
+          optional:
+            - caps_lock
+      to:
+        key_code: close_bracket
+        modifiers:
+          - command
+          - shift
