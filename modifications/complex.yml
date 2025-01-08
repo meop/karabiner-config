@@ -16,28 +16,78 @@
 # normalizing the config file
 
 
-- description: pc style reverse vnc viewer
+- description: pc style console interaction
 
   include:
-    - "^com\\.realvnc\\.vncviewer$"
+    - "^com\\.googlecode\\.iterm2$"
 
   manipulators:
 
+    # terminal multiplexor
     - from:
-        key_code: left_option
         modifiers:
+          mandatory:
+            - control
           optional:
-            - any
+            - caps_lock
+            - shift
+            - option
       to:
-        key_code: left_command
+        modifiers:
+          - control
+      key_codes:
+        - b
+        - c
 
+
+- description: pc style editor interaction
+
+  include:
+    - "^com\\.facebook\\.fbvscode$"
+    - "^com\\.microsoft\\.VSCode$"
+    - "^net\\.cozic\\.joplin-desktop$"
+
+  manipulators:
+
+    # editor page navigation
     - from:
-        key_code: left_command
+        key_code: left_arrow
         modifiers:
+          mandatory:
+            - option
           optional:
-            - any
+            - caps_lock
       to:
-        key_code: right_command
+        key_code: hyphen
+        modifiers:
+          - control
+    - from:
+        key_code: right_arrow
+        modifiers:
+          mandatory:
+            - option
+          optional:
+            - caps_lock
+      to:
+        key_code: hyphen
+        modifiers:
+          - control
+          - shift
+
+    # word navigation
+    - from:
+        modifiers:
+          mandatory:
+            - control
+          optional:
+            - caps_lock
+            - shift
+      to:
+        modifiers:
+          - option
+      key_codes:
+        - left_arrow
+        - right_arrow
 
 
 - description: pc style browser interaction
@@ -78,79 +128,6 @@
         key_code: close_bracket
         modifiers:
           - command
-
-    # word navigation
-    - from:
-        modifiers:
-          mandatory:
-            - control
-          optional:
-            - caps_lock
-            - shift
-      to:
-        modifiers:
-          - option
-      key_codes:
-        - left_arrow
-        - right_arrow
-
-
-- description: pc style console interaction
-
-  include:
-    - "^com\\.googlecode\\.iterm2$"
-
-  manipulators:
-
-    # terminal multiplexor
-    - from:
-        modifiers:
-          mandatory:
-            - control
-          optional:
-            - caps_lock
-            - shift
-            - option
-      to:
-        modifiers:
-          - control
-      key_codes:
-        - b
-
-
-- description: pc style editor interaction
-
-  include:
-    - "^com\\.facebook\\.fbvscode$"
-    - "^com\\.microsoft\\.VSCode$"
-    - "^net\\.cozic\\.joplin-desktop$"
-
-  manipulators:
-
-    # editor page navigation
-    - from:
-        key_code: left_arrow
-        modifiers:
-          mandatory:
-            - option
-          optional:
-            - caps_lock
-      to:
-        key_code: hyphen
-        modifiers:
-          - control
-    - from:
-        key_code: right_arrow
-        modifiers:
-          mandatory:
-            - option
-          optional:
-            - caps_lock
-      to:
-        key_code: hyphen
-        modifiers:
-          - control
-          - shift
 
     # word navigation
     - from:
@@ -254,6 +231,30 @@
         # - up_arrow
         # - down_arrow
       # reverse: true
+
+
+- description: pc style reverse vnc viewer
+
+  include:
+    - "^com\\.realvnc\\.vncviewer$"
+
+  manipulators:
+
+    - from:
+        key_code: left_option
+        modifiers:
+          optional:
+            - any
+      to:
+        key_code: left_command
+
+    - from:
+        key_code: left_command
+        modifiers:
+          optional:
+            - any
+      to:
+        key_code: right_command
 
 
 - description: pc style os interaction
