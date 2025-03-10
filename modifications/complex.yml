@@ -45,6 +45,7 @@
   include:
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.microsoft\\.VSCode$"
+    - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
 
   manipulators:
@@ -159,6 +160,7 @@
     - "^com\\.microsoft\\.edgemac"
     - "^com\\.microsoft\\.rdc\\."
     - "^com\\.microsoft\\.VSCode$"
+    - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
     - "^org\\.chromium\\.Chromium$"
     - "^org\\.mozilla\\.firefox$"
