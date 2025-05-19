@@ -9,8 +9,8 @@ output_file = '.output/karabiner.json'
 config_file = '~/.config/karabiner/karabiner.json'
 config_profile_name = 'default'
 
-complex_mods_file = 'modifications/complex.yml'
-simple_mods_file = 'modifications/simple.yml'
+complex_mods_file = 'modifications/complex.yaml'
+simple_mods_file = 'modifications/simple.yaml'
 
 
 with open(complex_mods_file) as _f:
@@ -47,10 +47,14 @@ def _build_manipulator(conditions, from_, to_):
 def _build_reverse_manipulator(manipulator):
   reverse_manipulator = copy.deepcopy(manipulator)
   reverse_manipulator['from']['key_code'] = manipulator['to'][0]['key_code']
-  reverse_manipulator['from']['modifiers']['mandatory'] = manipulator['to'][0]['modifiers']
+  reverse_manipulator['from']['modifiers']['mandatory'] = manipulator['to'][0][
+    'modifiers'
+  ]
 
   reverse_manipulator['to'][0]['key_code'] = manipulator['from']['key_code']
-  reverse_manipulator['to'][0]['modifiers'] = manipulator['from']['modifiers']['mandatory']
+  reverse_manipulator['to'][0]['modifiers'] = manipulator['from']['modifiers'][
+    'mandatory'
+  ]
 
   return reverse_manipulator
 

@@ -164,6 +164,7 @@
     - "^com\\.vivaldi\\.Vivaldi$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
+    - "^org\\.audacityteam\\.audacity$"
     - "^org\\.chromium\\.Chromium$"
     - "^org\\.mozilla\\.firefox$"
     - "^org\\.mozilla\\.nightly$"
