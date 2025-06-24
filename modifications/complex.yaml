@@ -47,6 +47,7 @@
     - "^com\\.microsoft\\.VSCode$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
+    - "^net\\.mediaarea\\.mediainfo\\.mac-old$"
 
   manipulators:
 
@@ -164,6 +165,7 @@
     - "^com\\.vivaldi\\.Vivaldi$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
+    - "^net\\.mediaarea\\.mediainfo\\.mac-old$"
     - "^org\\.audacityteam\\.audacity$"
     - "^org\\.chromium\\.Chromium$"
     - "^org\\.mozilla\\.firefox$"
