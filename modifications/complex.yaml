@@ -47,7 +47,6 @@
     - "^com\\.microsoft\\.VSCode$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
-    - "^net\\.mediaarea\\.mediainfo\\.mac-old$"
 
   manipulators:
 
@@ -99,8 +98,7 @@
     - "^com\\.brave\\.Browser$"
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
-    - "^com\\.microsoft\\.Edge"
-    - "^com\\.microsoft\\.edgemac"
+    - "^com\\.microsoft\\.edgemac$"
     - "^com\\.vivaldi\\.Vivaldi$"
     - "^org\\.chromium\\.Chromium$"
     - "^org\\.mozilla\\.firefox$"
@@ -158,11 +156,11 @@
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
     - "^com\\.googlecode\\.iterm2$"
-    - "^com\\.microsoft\\.Edge"
-    - "^com\\.microsoft\\.edgemac"
-    - "^com\\.microsoft\\.rdc\\."
+    - "^com\\.microsoft\\.edgemac$"
+    - "^com\\.microsoft\\.rdc\\.macos$"
     - "^com\\.microsoft\\.VSCode$"
     - "^com\\.vivaldi\\.Vivaldi$"
+    - "^download\\.mkvtoolnix\\.MKVToolNix$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
     - "^net\\.mediaarea\\.mediainfo\\.mac-old$"
