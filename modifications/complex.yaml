@@ -16,28 +16,28 @@
 # normalizing the config file
 
 
-- description: pc style console interaction
+# - description: pc style console interaction
 
-  include:
-    - "^com\\.googlecode\\.iterm2$"
+#   include:
+#     - "^com\\.googlecode\\.iterm2$"
 
-  manipulators:
+#   manipulators:
 
-    # terminal multiplexor
-    - from:
-        modifiers:
-          mandatory:
-            - control
-          optional:
-            - caps_lock
-            - shift
-            - option
-      to:
-        modifiers:
-          - control
-      key_codes:
-        - b
-        - c
+#     # terminal multiplexor
+#     - from:
+#         modifiers:
+#           mandatory:
+#             - control
+#           optional:
+#             - caps_lock
+#             - shift
+#             - option
+#       to:
+#         modifiers:
+#           - control
+#       key_codes:
+#         - b
+#         - c
 
 
 - description: pc style editor interaction
@@ -94,7 +94,6 @@
 - description: pc style browser interaction
 
   include:
-    - "^com\\.apple\\.Safari$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
@@ -149,13 +148,10 @@
 - description: pc style basic interaction
 
   include:
-    - "^com\\.apple\\.finder$"
-    - "^com\\.apple\\.Safari$"
     - "^com\\.brave\\.Browser$"
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.google\\.Chrome.canary$"
     - "^com\\.google\\.Chrome$"
-    - "^com\\.googlecode\\.iterm2$"
     - "^com\\.microsoft\\.edgemac$"
     - "^com\\.microsoft\\.rdc\\.macos$"
     - "^com\\.microsoft\\.VSCode$"
