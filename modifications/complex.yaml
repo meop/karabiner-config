@@ -15,7 +15,6 @@
 # * adding built-in reverse rule pairs
 # normalizing the config file
 
-
 # - description: pc style console interaction
 
 #   include:
@@ -39,17 +38,16 @@
 #         - b
 #         - c
 
-
 - description: pc style editor interaction
 
   include:
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.microsoft\\.VSCode$"
+    - "^dev\\.zed\\.Zed$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
 
   manipulators:
-
     # editor page navigation
     - from:
         key_code: left_arrow
@@ -90,7 +88,6 @@
         - left_arrow
         - right_arrow
 
-
 - description: pc style browser interaction
 
   include:
@@ -104,7 +101,6 @@
     - "^org\\.mozilla\\.nightly$"
 
   manipulators:
-
     # browser page navigation
     - from:
         key_code: left_arrow
@@ -144,7 +140,6 @@
         - left_arrow
         - right_arrow
 
-
 - description: pc style basic interaction
 
   include:
@@ -156,6 +151,7 @@
     - "^com\\.microsoft\\.rdc\\.macos$"
     - "^com\\.microsoft\\.VSCode$"
     - "^com\\.vivaldi\\.Vivaldi$"
+    - "^dev\\.zed\\.Zed$"
     - "^download\\.mkvtoolnix\\.MKVToolNix$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
@@ -166,7 +162,6 @@
     - "^org\\.mozilla\\.nightly$"
 
   manipulators:
-
     # common controls
     - from:
         modifiers:
@@ -233,14 +228,12 @@
         # - down_arrow
       # reverse: true
 
-
 - description: pc style reverse vnc viewer
 
   include:
     - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
-
     - from:
         key_code: left_option
         modifiers:
@@ -257,14 +250,12 @@
       to:
         key_code: right_command
 
-
 - description: pc style os interaction
 
   exclude:
     - "^com\\.realvnc\\.vncviewer$"
 
   manipulators:
-
     # open task manager
     - from:
         key_code: escape
@@ -293,12 +284,13 @@
         modifiers:
           mandatory:
             - command
+            - option
           optional:
             - caps_lock
-            - option
       to:
         modifiers:
           - control
+          - option
       key_codes:
         - left_arrow
         - right_arrow
