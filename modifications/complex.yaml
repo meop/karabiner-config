@@ -43,6 +43,7 @@
   include:
     - "^com\\.facebook\\.fbvscode$"
     - "^com\\.microsoft\\.VSCode$"
+    - "^com\\.unity3d\\.UnityEditor5.x$"
     - "^dev\\.zed\\.Zed$"
     - "^md\\.obsidian$"
     - "^net\\.cozic\\.joplin-desktop$"
@@ -150,6 +151,7 @@
     - "^com\\.microsoft\\.edgemac$"
     - "^com\\.microsoft\\.rdc\\.macos$"
     - "^com\\.microsoft\\.VSCode$"
+    - "^com\\.unity3d\\.UnityEditor5.x$"
     - "^com\\.vivaldi\\.Vivaldi$"
     - "^dev\\.zed\\.Zed$"
     - "^download\\.mkvtoolnix\\.MKVToolNix$"
