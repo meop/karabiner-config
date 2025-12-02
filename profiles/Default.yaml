@@ -47,10 +47,12 @@ devices:
           key_code: left_command
         to:
           key_code: left_option
+        reverse: true
       - from:
           key_code: right_command
         to:
           key_code: right_option
+        reverse: true
 
 complex_modifications:
   - description: pc style editor app
