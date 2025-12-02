@@ -55,6 +55,25 @@ devices:
         reverse: true
 
 complex_modifications:
+  - description: pc style remote app
+    include:
+      - "^com\\.realvnc\\.vncviewer$"
+    manipulators:
+      # adjust for capture bindings
+      - from:
+          key_code: left_option
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: left_command
+      - from:
+          key_code: left_command
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: right_command
   - description: pc style editor app
     include:
       - "^com\\.facebook\\.fbvscode$"
@@ -233,26 +252,7 @@ complex_modifications:
           # - up_arrow
           # - down_arrow
         # reverse: true
-  - description: pc style remote os
-    include:
-      - "^com\\.realvnc\\.vncviewer$"
-    manipulators:
-      # undo vnc viewer mods
-      - from:
-          key_code: left_option
-          modifiers:
-            optional:
-              - any
-        to:
-          key_code: left_command
-      - from:
-          key_code: left_command
-          modifiers:
-            optional:
-              - any
-        to:
-          key_code: right_command
-  - description: pc style os
+  - description: pc style
     exclude:
       - "^com\\.microsoft\\.rdc\\.macos$"
       - "^com\\.realvnc\\.vncviewer$"
@@ -313,52 +313,6 @@ complex_modifications:
           modifiers:
             - command
             - shift
-      # virtual desktop split
-      - from:
-          modifiers:
-            mandatory:
-              - command
-              - option
-            optional:
-              - caps_lock
-              - shift
-        to:
-          modifiers:
-            - control
-            - option
-        key_codes:
-          - u
-          - i
-          - j
-          - k
-          - d
-          - f
-          - g
-          - e
-          - t
-          - equal_sign
-          - hyphen
-          - delete_or_backspace
-          - return_or_enter
-          - left_arrow
-          - right_arrow
-          - up_arrow
-          - down_arrow
-      # virtual desktop navigation
-      - from:
-          modifiers:
-            mandatory:
-              - command
-            optional:
-              - any
-        to:
-          modifiers:
-            - control
-        key_codes:
-          - left_arrow
-          - right_arrow
-          - up_arrow
-          - down_arrow
       # word navigation
       - from:
           modifiers:
