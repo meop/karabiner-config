@@ -1,0 +1,377 @@
+---
+# changes from Karabiner:
+
+# * adding rule level conditions
+# and inlining them into manipulators
+
+# * not using macros
+# ie, multiple outputs from single input
+# so simplified mappings
+
+# * not allowing optional modifiers
+# as this just introduces greedy capture
+# and unexpected behaviors
+
+# * adding built-in reverse rule pairs
+# normalizing the config file
+
+name: Default
+
+# hard to use in combination with complex_modifications
+# because these take precedence and affect them all globally
+# simple_modifications:
+#   - from:
+#       key_code: left_command
+#     to:
+#       key_code: left_control
+#     reverse: true
+#   - from:
+#       key_code: right_command
+#     to:
+#       key_code: right_control
+#     reverse: true
+
+# Q: macos can swap modifier keys itself right?
+# A: yes but the built-in fn key swap seems to have issues, whereas Karabiner does not
+devices:
+  - identifiers:
+      # will match first keyboard, ie. laptop one
+      is_keyboard: true
+    simple_modifications:
+      - from:
+          apple_vendor_top_case_key_code: keyboard_fn
+        to:
+          key_code: left_control
+        reverse: true
+      - from:
+          key_code: left_command
+        to:
+          key_code: left_option
+      - from:
+          key_code: right_command
+        to:
+          key_code: right_option
+
+complex_modifications:
+  - description: pc style editor app
+    include:
+      - "^com\\.facebook\\.fbvscode$"
+      - "^com\\.microsoft\\.VSCode$"
+      - "^com\\.unity3d\\.UnityEditor5.x$"
+      - "^dev\\.zed\\.Zed$"
+      - "^md\\.obsidian$"
+      - "^net\\.cozic\\.joplin-desktop$"
+    manipulators:
+      # location back
+      - from:
+          key_code: left_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: hyphen
+          modifiers:
+            - control
+      # location forward
+      - from:
+          key_code: right_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: hyphen
+          modifiers:
+            - control
+            - shift
+      # scroll up
+      - from:
+          key_code: up_arrow
+          modifiers:
+            mandatory:
+              - control
+            optional:
+              - caps_lock
+              - shift
+        to:
+          key_code: page_up
+          modifiers:
+            - control
+      # scroll down
+      - from:
+          key_code: down_arrow
+          modifiers:
+            mandatory:
+              - control
+            optional:
+              - caps_lock
+              - shift
+        to:
+          key_code: page_down
+          modifiers:
+            - control
+  - description: pc style browser app
+    include:
+      - "^com\\.brave\\.Browser$"
+      - "^com\\.google\\.Chrome.canary$"
+      - "^com\\.google\\.Chrome$"
+      - "^com\\.microsoft\\.edgemac$"
+      - "^com\\.vivaldi\\.Vivaldi$"
+      - "^org\\.chromium\\.Chromium$"
+      - "^org\\.mozilla\\.firefox$"
+      - "^org\\.mozilla\\.nightly$"
+    manipulators:
+      # page back
+      - from:
+          key_code: left_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: open_bracket
+          modifiers:
+            - command
+      # page forward
+      - from:
+          key_code: right_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: close_bracket
+          modifiers:
+            - command
+  - description: pc style app
+    include:
+      - "^com\\.brave\\.Browser$"
+      - "^com\\.facebook\\.fbvscode$"
+      - "^com\\.google\\.Chrome.canary$"
+      - "^com\\.google\\.Chrome$"
+      - "^com\\.microsoft\\.edgemac$"
+      - "^com\\.microsoft\\.VSCode$"
+      - "^com\\.unity3d\\.UnityEditor5.x$"
+      - "^com\\.vivaldi\\.Vivaldi$"
+      - "^dev\\.zed\\.Zed$"
+      - "^download\\.mkvtoolnix\\.MKVToolNix$"
+      - "^md\\.obsidian$"
+      - "^net\\.cozic\\.joplin-desktop$"
+      - "^net\\.mediaarea\\.mediainfo\\.mac-old$"
+      - "^org\\.audacityteam\\.audacity$"
+      - "^org\\.chromium\\.Chromium$"
+      - "^org\\.mozilla\\.firefox$"
+      - "^org\\.mozilla\\.nightly$"
+    manipulators:
+      # common
+      - from:
+          modifiers:
+            mandatory:
+              - control
+            optional:
+              - caps_lock
+              - shift
+              - option
+        to:
+          modifiers:
+            - command
+        key_codes:
+          - a
+          - b
+          - c
+          - d
+          - e
+          - f
+          - g
+          - h
+          - i
+          - j
+          - k
+          - l
+          - m
+          - n
+          - o
+          - p
+          - q
+          - r
+          - s
+          - t
+          - u
+          - v
+          - w
+          - x
+          - y
+          - z
+          - comma
+          - period
+          - slash
+          - semicolon
+          - quote
+          - open_bracket
+          - close_bracket
+          # - spacebar
+          # - tab
+          # - backslash
+          # - grave_accent_and_tilde
+          # - hyphen
+          # - equal_sign
+          # - delete_or_backspace
+          # - return_or_enter
+          # - insert
+          # - delete_forward
+          # - home
+          # - end
+          # - page_up
+          # - page_down
+          # - left_arrow
+          # - right_arrow
+          # - up_arrow
+          # - down_arrow
+        # reverse: true
+  - description: pc style remote os
+    include:
+      - "^com\\.realvnc\\.vncviewer$"
+    manipulators:
+      # reverse vnc viewer mods
+      - from:
+          key_code: left_option
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: left_command
+      - from:
+          key_code: left_command
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: right_command
+  - description: pc style os
+    exclude:
+      - "^com\\.microsoft\\.rdc\\.macos$"
+      - "^com\\.realvnc\\.vncviewer$"
+    manipulators:
+      # open document explorer
+      - from:
+          key_code: e
+          modifiers:
+            mandatory:
+              - command
+            optional:
+              - caps_lock
+        to:
+          shell_command: "open -a 'Finder.app'"
+      # open task manager
+      - from:
+          key_code: escape
+          modifiers:
+            mandatory:
+              - command
+              - shift
+            optional:
+              - caps_lock
+        to:
+          shell_command: "open -a 'Activity Monitor.app'"
+      # print screen
+      - from:
+          key_code: print_screen
+        to:
+          key_code: "3"
+          modifiers:
+            - command
+            - shift
+      # print screen select
+      - from:
+          key_code: print_screen
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: "4"
+          modifiers:
+            - command
+            - shift
+      # print screen panel
+      - from:
+          key_code: print_screen
+          modifiers:
+            mandatory:
+              - option
+              - shift
+            optional:
+              - caps_lock
+        to:
+          key_code: "5"
+          modifiers:
+            - command
+            - shift
+      # virtual desktop split
+      - from:
+          modifiers:
+            mandatory:
+              - command
+              - option
+            optional:
+              - caps_lock
+              - shift
+        to:
+          modifiers:
+            - control
+            - option
+        key_codes:
+          - u
+          - i
+          - j
+          - k
+          - d
+          - f
+          - g
+          - e
+          - t
+          - equal_sign
+          - hyphen
+          - delete_or_backspace
+          - return_or_enter
+          - left_arrow
+          - right_arrow
+          - up_arrow
+          - down_arrow
+      # virtual desktop navigation
+      - from:
+          modifiers:
+            mandatory:
+              - command
+            optional:
+              - caps_lock
+              - option
+              - shift
+        to:
+          modifiers:
+            - control
+        key_codes:
+          - left_arrow
+          - right_arrow
+          - up_arrow
+          - down_arrow
+      # word navigation
+      - from:
+          modifiers:
+            mandatory:
+              - control
+            optional:
+              - caps_lock
+              - shift
+        to:
+          modifiers:
+            - option
+        key_codes:
+          - left_arrow
+          - right_arrow

@@ -5,20 +5,12 @@ import os
 import yaml
 
 
+profile_name = 'Default'
 output_file = '.output/karabiner.json'
 config_file = '~/.config/karabiner/karabiner.json'
-config_profile_name = 'default'
 
-complex_mods_file = 'modifications/complex.yaml'
-simple_mods_file = 'modifications/simple.yaml'
-
-
-with open(complex_mods_file) as _f:
-  complex_mods = yaml.load(_f.read(), Loader=yaml.Loader)
-
-
-with open(simple_mods_file) as _f:
-  simple_mods = yaml.load(_f.read(), Loader=yaml.Loader)
+with open(f'profiles/{profile_name}.yaml') as _f:
+  profile_file = yaml.load(_f.read(), Loader=yaml.Loader)
 
 
 def _build_manipulator(conditions, from_, to_):
@@ -59,100 +51,93 @@ def _build_reverse_manipulator(manipulator):
   return reverse_manipulator
 
 
-_complex_mods = []
-for mod in complex_mods:
-  _manipulators = []
-  if 'manipulators' not in mod or not mod['manipulators']:
-    continue
+profile = {}
 
-  _conditions = []
-  for _condition in ['include', 'exclude']:
-    if _condition in mod and mod[_condition]:
-      _conditions.append(
-        {
-          'bundle_identifiers': mod[_condition],
-          'type': (
-            'frontmost_application_if'
-            if _condition == 'include'
-            else 'frontmost_application_unless'
-          ),
-        }
-      )
+if 'complex_modifications' in profile_file:
+  _complex_mods = []
+  for mod in profile_file['complex_modifications']:
+    _manipulators = []
+    if 'manipulators' not in mod or not mod['manipulators']:
+      continue
 
-  for manipulator in mod['manipulators']:
-    _from = manipulator['from']
-    _to = manipulator['to']
+    _conditions = []
+    for _condition in ['include', 'exclude']:
+      if _condition in mod and mod[_condition]:
+        _conditions.append(
+          {
+            'bundle_identifiers': mod[_condition],
+            'type': (
+              'frontmost_application_if'
+              if _condition == 'include'
+              else 'frontmost_application_unless'
+            ),
+          }
+        )
 
-    if 'key_codes' in manipulator and manipulator['key_codes']:
-      for key_code in manipulator['key_codes']:
-        _from['key_code'] = key_code
-        _to['key_code'] = key_code
+    for manipulator in mod['manipulators']:
+      _from = manipulator['from']
+      _to = manipulator['to']
+
+      if 'key_codes' in manipulator and manipulator['key_codes']:
+        for key_code in manipulator['key_codes']:
+          _from['key_code'] = key_code
+          _to['key_code'] = key_code
+          _m = _build_manipulator(_conditions, _from, _to)
+          _manipulators.append(_m)
+          if 'reverse' in manipulator and manipulator['reverse']:
+            _manipulators.append(_build_reverse_manipulator(_m))
+      else:
         _m = _build_manipulator(_conditions, _from, _to)
         _manipulators.append(_m)
         if 'reverse' in manipulator and manipulator['reverse']:
           _manipulators.append(_build_reverse_manipulator(_m))
-    else:
-      _m = _build_manipulator(_conditions, _from, _to)
-      _manipulators.append(_m)
-      if 'reverse' in manipulator and manipulator['reverse']:
-        _manipulators.append(_build_reverse_manipulator(_m))
 
-  _complex_mods.append(
-    {'description': mod['description'], 'manipulators': _manipulators}
-  )
+    _complex_mods.append(
+      {'description': mod['description'], 'manipulators': _manipulators}
+    )
+  profile['complex_modifications'] = {'rules': _complex_mods}
 
+if 'simple_modifications' in profile_file:
+  _simple_mods = []
+  for mod in profile_file['simple_modifications']:
+    _from = mod['from']
+    _to = mod['to']
 
-_simple_mods = []
-for mod in simple_mods:
-  _simple_modifications = []
-  if 'simple_modifications' not in mod or not mod['simple_modifications']:
-    continue
+    _simple_mods.append({'from': _from, 'to': [_to]})
+    if 'reverse' in mod and mod['reverse']:
+      _simple_mods.append({'from': _to, 'to': [_from]})
+  profile['simple_modifications'] = _simple_mods
 
-  for simple_modification in mod['simple_modifications']:
-    _from = simple_modification['from']
-    _to = simple_modification['to']
+if 'devices' in profile_file:
+  _device_mods = []
+  for dev in profile_file['devices']:
+    if 'simple_modifications' in dev:
+      _simple_mods = []
+      for mod in dev['simple_modifications']:
+        _from = mod['from']
+        _to = mod['to']
 
-    _simple_modifications.append({'from': _from, 'to': [_to]})
-    if 'reverse' in simple_modification and simple_modification['reverse']:
-      _simple_modifications.append({'from': _to, 'to': [_from]})
-
-  _simple_mods.append(
-    {
-      'identifiers': mod['identifiers'],
-      'simple_modifications': _simple_modifications,
-    }
-  )
+        _simple_mods.append({'from': _from, 'to': [_to]})
+        if 'reverse' in mod and mod['reverse']:
+          _simple_mods.append({'from': _to, 'to': [_from]})
+      _device_mods.append(
+        {'identifiers': dev['identifiers'], 'simple_modifications': _simple_mods}
+      )
+  profile['devices'] = _device_mods
 
 
 config_file = os.path.expanduser(config_file)
 with open(config_file) as _f:
   config = json.loads(_f.read())
 
-
-def _find_device_modifications(device):
-  if 'identifiers' not in device:
-    return None
-
-  for mod in _simple_mods:
-    match = True
-    for key, value in mod['identifiers'].items():
-      if key not in device['identifiers'] or device['identifiers'][key] != value:
-        match = False
-    if match:
-      return mod['simple_modifications']
-
-
 for p in config['profiles']:
-  if config_profile_name in p['name'].lower():
-    p['complex_modifications']['rules'] = _complex_mods
-
-    for device in p['devices']:
-      modifications = _find_device_modifications(device)
-      if not modifications:
-        continue
-
-      device['simple_modifications'] = modifications
-
+  if p['name'] == profile_name:
+    if 'complex_modifications' in profile:
+      p['complex_modifications'] = profile['complex_modifications']
+    if 'simple_modifications' in profile:
+      p['simple_modifications'] = profile['simple_modifications']
+    if 'devices' in profile:
+      p['devices'] = profile['devices']
 
 karabiner_file = json.dumps(config, indent=4)
 
