@@ -1,8 +1,22 @@
 import copy
 import json
 import os
+import platform
+import sys
 
 import yaml
+
+
+p_sys = platform.system()
+p_mach = platform.machine()
+
+if p_sys != 'Darwin':
+  print(f'this script is for Darwin, not: {p_sys}')
+  sys.exit(0)
+
+if p_mach != 'aarch64' and p_mach != 'x86_64':
+  print(f'this script is for aarch64 or x86_64, not: {p_mach}')
+  sys.exit(0)
 
 
 profile_name = 'Default'
@@ -116,12 +130,18 @@ if 'devices' in profile_file:
       for mod in dev['simple_modifications']:
         _from = mod['from']
         _to = mod['to']
-
         _simple_mods.append({'from': _from, 'to': [_to]})
         if 'reverse' in mod and mod['reverse']:
           _simple_mods.append({'from': _to, 'to': [_from]})
+      _identifiers = dev['identifiers']
+      if p_mach == 'x86_64':
+        _identifiers = {
+          **_identifiers,
+          'product_id': 832,
+          'vendor_id': 1452,
+        }
       _device_mods.append(
-        {'identifiers': dev['identifiers'], 'simple_modifications': _simple_mods}
+        {'identifiers': _identifiers, 'simple_modifications': _simple_mods}
       )
   profile['devices'] = _device_mods
 
