@@ -1,18 +1,18 @@
 [project]
-name = "karabiner-config"
-version = "0.1.0"
-description = "Mutate Karabiner config Default profile"
-readme = "README.md"
-requires-python = ">=3.14,<3.15"
-dependencies = ["pyyaml>=6.0.3,<6.1"]
+name = 'karabiner-config'
+version = '0.1.0'
+description = 'Mutate Karabiner config Default profile'
+readme = 'README.md'
+requires-python = '>=3.14,<3.15'
+dependencies = ['pyyaml>=6.0.3,<6.1']
 
 [dependency-groups]
 dev = [
-  "ruff>=0.14.8",
+  'ruff>=0.14.8',
 ]
 
 [tool.ruff]
 indent-width = 2
 
 [tool.ruff.format]
-quote-style = "single"
+quote-style = 'single'
