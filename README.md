@@ -28,13 +28,13 @@ This project only modifies an existing profile, does not create a new one.. for 
 
 Edit complex.yml
 
-Edit the top of mutator.py file to set config_profile_name if needed
+Edit the top of src/main.py file to set config_profile_name if needed
 
 
 Run:
 
 ```bash
-uv run mutator.py
+uv run src/main.py
 ```
 
 ## Future
