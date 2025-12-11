@@ -188,7 +188,7 @@ def process_complex_modifications(profile_file: Dict[str, Any]) -> Dict[str, Any
       from_config = manipulator['from']
       to_config = manipulator['to']
       reverse = manipulator.get('reverse', False)
-      key_codes = manipulator.get('key_codes') or []
+      key_codes = manipulator.get('key_codes') or [None]
 
       for key_code in key_codes:
         from_cfg = from_config.copy()
