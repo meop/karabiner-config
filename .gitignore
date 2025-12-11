@@ -1,3 +1,10 @@
+# agents
+.aider/
+.claude/
+.cursor/
+.github/copilot/
+.windsurf/
+
 # python
 __pycache__/
 *.py[cod]
@@ -15,11 +22,9 @@ build/
 htmlcov/
 *.cover
 .hypothesis/
+.uv/
 .venv/
 venv/
-
-# uv
-.uv/
 
 # output
 .output/
