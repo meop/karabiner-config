@@ -35,8 +35,7 @@ name: Default
 # A: yes but the built-in fn key swap seems to have issues, whereas Karabiner does not
 devices:
   - identifiers:
-      # will match first keyboard, ie. laptop one
-      is_keyboard: true
+      vendor_id: 1452
     simple_modifications:
       - from:
           apple_vendor_top_case_key_code: keyboard_fn

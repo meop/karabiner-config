@@ -23,13 +23,6 @@ OUTPUT_FILE_PATHS = [
   CONFIG_FILE_PATH,
   expand_project_path(f'.output/{CONFIG_FILE_NAME}'),
 ]
-KEYBOARD_IDENTIFIERS = {
-  'arm64': {},
-  'x86_64': {
-    'product_id': 832,
-    'vendor_id': 1452,
-  },
-}
 
 
 # System validation
@@ -172,12 +165,14 @@ def process_modification_list(mods: List[Dict[str, Any]]) -> List[Dict[str, Any]
   return result
 
 
-def process_complex_modifications(profile_file: Dict[str, Any]) -> Dict[str, Any]:
-  if 'complex_modifications' not in profile_file:
-    return {}
+def process_complex_modifications(
+  profile: Dict[str, Any], profile_data: Dict[str, Any]
+) -> None:
+  if 'complex_modifications' not in profile_data:
+    return
 
   complex_mods = []
-  for mod in profile_file['complex_modifications']:
+  for mod in profile_data['complex_modifications']:
     if 'manipulators' not in mod or not mod['manipulators']:
       continue
 
@@ -202,52 +197,54 @@ def process_complex_modifications(profile_file: Dict[str, Any]) -> Dict[str, Any
       {'description': mod['description'], 'manipulators': manipulators}
     )
 
-  return {'complex_modifications': {'rules': complex_mods}}
+  profile.update({'complex_modifications': {'rules': complex_mods}})
 
 
-def process_simple_modifications(profile_file: Dict[str, Any]) -> Dict[str, Any]:
-  if 'simple_modifications' not in profile_file:
-    return {}
+def process_simple_modifications(
+  profile: Dict[str, Any], profile_data: Dict[str, Any]
+) -> None:
+  if 'simple_modifications' not in profile_data:
+    return
 
-  return {
-    'simple_modifications': process_modification_list(
-      profile_file['simple_modifications']
-    )
-  }
+  profile.update(
+    {
+      'simple_modifications': process_modification_list(
+        profile_data['simple_modifications']
+      )
+    }
+  )
 
 
-def process_device_modifications(profile_file: Dict[str, Any]) -> Dict[str, Any]:
-  if 'devices' not in profile_file:
-    return {}
+def process_device_modifications(
+  profile: Dict[str, Any], profile_data: Dict[str, Any]
+) -> None:
+  if 'devices' not in profile_data:
+    return
 
   device_mods = []
-  for dev in profile_file['devices']:
+  for dev in profile_data['devices']:
     if 'simple_modifications' not in dev:
       continue
 
-    device_mods.append(
-      {
-        'identifiers': {
-          **dev['identifiers'],
-          **KEYBOARD_IDENTIFIERS[platform.machine()],
-        },
-        'simple_modifications': process_modification_list(dev['simple_modifications']),
-      }
-    )
+    if not profile['devices']:
+      break
 
-  return {'devices': device_mods}
+    for device in profile['devices']:
+      if ('identifiers' not in device) or (not device['identifiers']['is_keyboard']):
+        continue
+      if ('vendor_id' not in device['identifiers']) or (
+        device['identifiers']['vendor_id'] == dev['identifiers']['vendor_id']
+      ):
+        device_mods.append(
+          {
+            'identifiers': device['identifiers'],
+            'simple_modifications': process_modification_list(
+              dev['simple_modifications']
+            ),
+          }
+        )
 
-
-# Profile management
-def update_profile(
-  config: Dict[str, Any], profile_name: str, profile_updates: Dict[str, Any]
-) -> None:
-  for p in config['profiles']:
-    if p['name'] == profile_name:
-      p.update(profile_updates)
-      return
-
-  print(f'Warning: Profile "{profile_name}" not found in config')
+  profile.update({'devices': device_mods})
 
 
 # Main orchestrator
@@ -264,11 +261,21 @@ def main() -> None:
 
   config = load_karabiner_config()
   if not config:
+    print('Warning: config not found')
     return
 
   for profile_path in profile_files:
     profile_name = profile_path.stem
     print(f'Processing profile: {profile_name}')
+
+    profile = {}
+    for p in config['profiles']:
+      if p['name'] == profile_name:
+        profile = p
+
+    if not profile:
+      print(f'Warning: Profile "{profile_name}" not found in config')
+      continue
 
     try:
       with open(profile_path) as _f:
@@ -277,7 +284,6 @@ def main() -> None:
       print(f'Error parsing YAML file {profile_path}: {e}')
       return
 
-    profile_updates = {}
     processors = [
       process_complex_modifications,
       process_simple_modifications,
@@ -285,11 +291,7 @@ def main() -> None:
     ]
 
     for processor in processors:
-      result = processor(profile_data)
-      if result:
-        profile_updates.update(result)
-
-    update_profile(config, profile_name, profile_updates)
+      processor(profile, profile_data)
 
   write_config_files(config)
 
