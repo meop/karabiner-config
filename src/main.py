@@ -2,7 +2,7 @@ import copy
 import json
 import platform
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import yaml
 
@@ -41,7 +41,7 @@ def validate_system() -> bool:
 
 
 # I/O functions
-def load_karabiner_config() -> Optional[Dict[str, Any]]:
+def load_karabiner_config() -> dict[str, Any] | None:
   try:
     with open(CONFIG_FILE_PATH) as _f:
       return json.load(_f)
@@ -53,7 +53,7 @@ def load_karabiner_config() -> Optional[Dict[str, Any]]:
     return None
 
 
-def write_config_files(config: Dict[str, Any]) -> bool:
+def write_config_files(config: dict[str, Any]) -> bool:
   karabiner_json = json.dumps(config, indent=2)
 
   for output_path in OUTPUT_FILE_PATHS:
@@ -70,7 +70,7 @@ def write_config_files(config: Dict[str, Any]) -> bool:
 
 
 # Building blocks
-def build_conditions(mod: Dict[str, Any]) -> List[Dict[str, Any]]:
+def build_conditions(mod: dict[str, Any]) -> list[dict[str, Any]]:
   conditions = []
   for condition_type in ['include', 'exclude']:
     if condition_type in mod and mod[condition_type]:
@@ -88,8 +88,8 @@ def build_conditions(mod: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 
 def build_manipulator(
-  conditions: List[Dict[str, Any]], from_: Dict[str, Any], to_: Dict[str, Any]
-) -> Dict[str, Any]:
+  conditions: list[dict[str, Any]], from_: dict[str, Any], to_: dict[str, Any]
+) -> dict[str, Any]:
   if 'key_code' not in from_:
     raise ValueError('from_ must contain a valid key_code')
 
@@ -113,7 +113,7 @@ def build_manipulator(
   }
 
 
-def build_reverse_manipulator(manipulator: Dict[str, Any]) -> Dict[str, Any]:
+def build_reverse_manipulator(manipulator: dict[str, Any]) -> dict[str, Any]:
   if 'to' not in manipulator or not manipulator['to']:
     raise ValueError('Manipulator must have valid "to" field')
 
@@ -133,7 +133,7 @@ def build_reverse_manipulator(manipulator: Dict[str, Any]) -> Dict[str, Any]:
   return reverse_manipulator
 
 
-def build_simple_modification(mod: Dict[str, Any]) -> List[Dict[str, Any]]:
+def build_simple_modification(mod: dict[str, Any]) -> list[dict[str, Any]]:
   from_config = mod['from']
   to_config = mod['to']
 
@@ -145,10 +145,10 @@ def build_simple_modification(mod: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 
 def process_add_manipulators(
-  manipulators: List[Dict[str, Any]],
-  conditions: List[Dict[str, Any]],
-  from_config: Dict[str, Any],
-  to_config: Dict[str, Any],
+  manipulators: list[dict[str, Any]],
+  conditions: list[dict[str, Any]],
+  from_config: dict[str, Any],
+  to_config: dict[str, Any],
   reverse: bool,
 ) -> None:
   m = build_manipulator(conditions, from_config, to_config)
@@ -158,7 +158,7 @@ def process_add_manipulators(
 
 
 # Processors
-def process_modification_list(mods: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def process_modification_list(mods: list[dict[str, Any]]) -> list[dict[str, Any]]:
   result = []
   for mod in mods:
     result.extend(build_simple_modification(mod))
@@ -166,7 +166,7 @@ def process_modification_list(mods: List[Dict[str, Any]]) -> List[Dict[str, Any]
 
 
 def process_complex_modifications(
-  profile: Dict[str, Any], profile_data: Dict[str, Any]
+  profile: dict[str, Any], profile_data: dict[str, Any]
 ) -> None:
   if 'complex_modifications' not in profile_data:
     return
@@ -201,7 +201,7 @@ def process_complex_modifications(
 
 
 def process_simple_modifications(
-  profile: Dict[str, Any], profile_data: Dict[str, Any]
+  profile: dict[str, Any], profile_data: dict[str, Any]
 ) -> None:
   if 'simple_modifications' not in profile_data:
     return
@@ -216,7 +216,7 @@ def process_simple_modifications(
 
 
 def process_device_modifications(
-  profile: Dict[str, Any], profile_data: Dict[str, Any]
+  profile: dict[str, Any], profile_data: dict[str, Any]
 ) -> None:
   if 'devices' not in profile_data:
     return
