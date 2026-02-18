@@ -135,6 +135,8 @@ complex_modifications:
             - control
   - description: pc style browser app
     include:
+      - "^com\\.apple\\.finder$"
+      - "^com\\.apple\\.Safari$"
       - "^com\\.brave\\.Browser$"
       - "^com\\.google\\.Chrome.canary$"
       - "^com\\.google\\.Chrome$"
@@ -170,10 +172,14 @@ complex_modifications:
             - command
   - description: pc style app
     include:
+      - "^com\\.apple\\.finder$"
+      - "^com\\.apple\\.Safari$"
+      - "^com\\.apple\\.Terminal$"
       - "^com\\.brave\\.Browser$"
       - "^com\\.facebook\\.fbvscode$"
-      - "^com\\.google\\.Chrome.canary$"
       - "^com\\.google\\.Chrome$"
+      - "^com\\.google\\.Chrome.canary$"
+      - "^com\\.googlecode\\.iterm2$"
       - "^com\\.microsoft\\.edgemac$"
       - "^com\\.microsoft\\.VSCode$"
       - "^com\\.unity3d\\.UnityEditor5.x$"
@@ -250,7 +256,7 @@ complex_modifications:
           # - right_arrow
           # - up_arrow
           # - down_arrow
-        # reverse: true
+        reverse: true
   - description: pc style
     exclude:
       - "^com\\.microsoft\\.rdc\\.macos$"
