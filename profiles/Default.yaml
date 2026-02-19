@@ -54,62 +54,69 @@ devices:
         reverse: true
 
 complex_modifications:
-  - description: pc style remote app
-    include:
+  - description: pc style
+    exclude:
+      - "^com\\.microsoft\\.rdc\\.macos$"
       - "^com\\.realvnc\\.vncviewer$"
     manipulators:
-      # adjust for capture bindings
+      # open document explorer
       - from:
-          key_code: left_option
-          modifiers:
-            optional:
-              - any
-        to:
-          key_code: left_command
-      - from:
-          key_code: left_command
-          modifiers:
-            optional:
-              - any
-        to:
-          key_code: right_command
-  - description: pc style editor app
-    include:
-      - "^com\\.facebook\\.fbvscode$"
-      - "^com\\.microsoft\\.VSCode$"
-      - "^com\\.unity3d\\.UnityEditor5.x$"
-      - "^dev\\.zed\\.Zed$"
-      - "^md\\.obsidian$"
-      - "^net\\.cozic\\.joplin-desktop$"
-    manipulators:
-      # location back
-      - from:
-          key_code: left_arrow
+          key_code: e
           modifiers:
             mandatory:
-              - option
+              - command
             optional:
               - caps_lock
         to:
-          key_code: hyphen
-          modifiers:
-            - control
-      # location forward
+          shell_command: "open -a 'Finder.app'"
+      # open task manager
       - from:
-          key_code: right_arrow
+          key_code: escape
           modifiers:
             mandatory:
-              - option
+              - command
+              - shift
             optional:
               - caps_lock
         to:
-          key_code: hyphen
+          shell_command: "open -a 'Activity Monitor.app'"
+      # print screen
+      - from:
+          key_code: print_screen
+        to:
+          key_code: '3'
           modifiers:
-            - control
+            - command
             - shift
-      # scroll up
+      # print screen select
       - from:
-          key_code: up_arrow
+          key_code: print_screen
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: '4'
+          modifiers:
+            - command
+            - shift
+      # print screen panel
+      - from:
+          key_code: print_screen
+          modifiers:
+            mandatory:
+              - option
+              - shift
+            optional:
+              - caps_lock
+        to:
+          key_code: '5'
+          modifiers:
+            - command
+            - shift
+      # word navigation
+      - from:
           modifiers:
             mandatory:
               - control
@@ -117,59 +124,11 @@ complex_modifications:
               - caps_lock
               - shift
         to:
-          key_code: page_up
           modifiers:
-            - control
-      # scroll down
-      - from:
-          key_code: down_arrow
-          modifiers:
-            mandatory:
-              - control
-            optional:
-              - caps_lock
-              - shift
-        to:
-          key_code: page_down
-          modifiers:
-            - control
-  - description: pc style browser app
-    include:
-      - "^com\\.apple\\.finder$"
-      - "^com\\.apple\\.Safari$"
-      - "^com\\.brave\\.Browser$"
-      - "^com\\.google\\.Chrome.canary$"
-      - "^com\\.google\\.Chrome$"
-      - "^com\\.microsoft\\.edgemac$"
-      - "^com\\.vivaldi\\.Vivaldi$"
-      - "^org\\.chromium\\.Chromium$"
-      - "^org\\.mozilla\\.firefox$"
-      - "^org\\.mozilla\\.nightly$"
-    manipulators:
-      # page back
-      - from:
-          key_code: left_arrow
-          modifiers:
-            mandatory:
-              - option
-            optional:
-              - caps_lock
-        to:
-          key_code: open_bracket
-          modifiers:
-            - command
-      # page forward
-      - from:
-          key_code: right_arrow
-          modifiers:
-            mandatory:
-              - option
-            optional:
-              - caps_lock
-        to:
-          key_code: close_bracket
-          modifiers:
-            - command
+            - option
+        key_codes:
+          - left_arrow
+          - right_arrow
   - description: pc style app
     include:
       - "^com\\.apple\\.finder$"
@@ -257,69 +216,80 @@ complex_modifications:
           # - up_arrow
           # - down_arrow
         reverse: true
-  - description: pc style
-    exclude:
-      - "^com\\.microsoft\\.rdc\\.macos$"
-      - "^com\\.realvnc\\.vncviewer$"
+  - description: pc style browser app
+    include:
+      - "^com\\.apple\\.finder$"
+      - "^com\\.apple\\.Safari$"
+      - "^com\\.brave\\.Browser$"
+      - "^com\\.google\\.Chrome.canary$"
+      - "^com\\.google\\.Chrome$"
+      - "^com\\.microsoft\\.edgemac$"
+      - "^com\\.vivaldi\\.Vivaldi$"
+      - "^org\\.chromium\\.Chromium$"
+      - "^org\\.mozilla\\.firefox$"
+      - "^org\\.mozilla\\.nightly$"
     manipulators:
-      # open document explorer
+      # page back
       - from:
-          key_code: e
-          modifiers:
-            mandatory:
-              - command
-            optional:
-              - caps_lock
-        to:
-          shell_command: "open -a 'Finder.app'"
-      # open task manager
-      - from:
-          key_code: escape
-          modifiers:
-            mandatory:
-              - command
-              - shift
-            optional:
-              - caps_lock
-        to:
-          shell_command: "open -a 'Activity Monitor.app'"
-      # print screen
-      - from:
-          key_code: print_screen
-        to:
-          key_code: "3"
-          modifiers:
-            - command
-            - shift
-      # print screen select
-      - from:
-          key_code: print_screen
+          key_code: left_arrow
           modifiers:
             mandatory:
               - option
             optional:
               - caps_lock
         to:
-          key_code: "4"
+          key_code: open_bracket
           modifiers:
             - command
-            - shift
-      # print screen panel
+      # page forward
       - from:
-          key_code: print_screen
+          key_code: right_arrow
           modifiers:
             mandatory:
               - option
-              - shift
             optional:
               - caps_lock
         to:
-          key_code: "5"
+          key_code: close_bracket
           modifiers:
             - command
-            - shift
-      # word navigation
+  - description: pc style editor app
+    include:
+      - "^com\\.facebook\\.fbvscode$"
+      - "^com\\.microsoft\\.VSCode$"
+      - "^com\\.unity3d\\.UnityEditor5.x$"
+      - "^dev\\.zed\\.Zed$"
+      - "^md\\.obsidian$"
+      - "^net\\.cozic\\.joplin-desktop$"
+    manipulators:
+      # location back
       - from:
+          key_code: left_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: hyphen
+          modifiers:
+            - control
+      # location forward
+      - from:
+          key_code: right_arrow
+          modifiers:
+            mandatory:
+              - option
+            optional:
+              - caps_lock
+        to:
+          key_code: hyphen
+          modifiers:
+            - control
+            - shift
+      # scroll up
+      - from:
+          key_code: up_arrow
           modifiers:
             mandatory:
               - control
@@ -327,8 +297,38 @@ complex_modifications:
               - caps_lock
               - shift
         to:
+          key_code: page_up
           modifiers:
-            - option
-        key_codes:
-          - left_arrow
-          - right_arrow
+            - control
+      # scroll down
+      - from:
+          key_code: down_arrow
+          modifiers:
+            mandatory:
+              - control
+            optional:
+              - caps_lock
+              - shift
+        to:
+          key_code: page_down
+          modifiers:
+            - control
+  - description: pc style remote app
+    include:
+      - "^com\\.realvnc\\.vncviewer$"
+    manipulators:
+      # adjust for capture bindings
+      - from:
+          key_code: left_option
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: left_command
+      - from:
+          key_code: left_command
+          modifiers:
+            optional:
+              - any
+        to:
+          key_code: right_command
