@@ -131,18 +131,22 @@ complex_modifications:
           - right_arrow
   - description: pc style app
     include:
+      - "^ai\\.opencode\\.desktop$"
+      - "^com\\.anthropic\\.claudefordesktop$"
       - "^com\\.apple\\.finder$"
       - "^com\\.apple\\.Safari$"
       - "^com\\.apple\\.Terminal$"
       - "^com\\.brave\\.Browser$"
       - "^com\\.facebook\\.fbvscode$"
-      - "^com\\.google\\.Chrome$"
       - "^com\\.google\\.Chrome.canary$"
+      - "^com\\.google\\.Chrome$"
       - "^com\\.googlecode\\.iterm2$"
       - "^com\\.microsoft\\.edgemac$"
       - "^com\\.microsoft\\.VSCode$"
+      - "^com\\.openai\\.codex$"
       - "^com\\.unity3d\\.UnityEditor5.x$"
       - "^com\\.vivaldi\\.Vivaldi$"
+      - "^dev\\.zcode\\.app$"
       - "^dev\\.zed\\.Zed$"
       - "^download\\.mkvtoolnix\\.MKVToolNix$"
       - "^md\\.obsidian$"
