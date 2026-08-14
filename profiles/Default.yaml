@@ -56,6 +56,7 @@ devices:
 complex_modifications:
   - description: pc style
     exclude:
+      - "^com\\.apple\\.ScreenSharing$"
       - "^com\\.microsoft\\.rdc\\.macos$"
       - "^com\\.realvnc\\.vncviewer$"
     manipulators:
@@ -143,6 +144,7 @@ complex_modifications:
       - "^com\\.googlecode\\.iterm2$"
       - "^com\\.microsoft\\.edgemac$"
       - "^com\\.microsoft\\.VSCode$"
+      - "^com\\.mitchellh\\.ghostty$"
       - "^com\\.openai\\.codex$"
       - "^com\\.unity3d\\.UnityEditor5.x$"
       - "^com\\.vivaldi\\.Vivaldi$"
